@@ -1,0 +1,21 @@
+body{
+	height: 100%;
+}
+
+#main{
+	height: auto;
+}
+
+#left{
+	 background-color: yellow;
+	 float: left;
+	 width:20%;
+	 height: 100%;
+	 text-align: left;
+}
+#right{
+	 background-color: red;
+	 float:left;
+	 width: 80%;
+	  
+}
