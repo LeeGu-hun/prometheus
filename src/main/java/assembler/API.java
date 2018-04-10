@@ -36,11 +36,9 @@ public class API {
 		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
-			// System.out.println(response.toString());
 			response.append(inputLine);
 		}
 		in.close();
-		// System.out.println(response.toString());
 
 		//파싱 끝
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -52,11 +50,16 @@ public class API {
 
 		Document doc = builder.parse("./BUSTEST");
 		doc.getDocumentElement().normalize();
-		int itemsize = doc.getElementsByTagName("item").getLength();
 		
 		int bstopCount = Integer
 				.parseInt(doc.getElementsByTagName("totalCount").item(0).getChildNodes().item(0).getNodeValue());
-		if (bstopCount >= 0  && bstopCount<= 20 ) {
+		int itemsize = doc.getElementsByTagName("item").getLength();
+		if(bstopCount >= 20) {
+			bstopCount = 20;
+		}
+		System.out.println(bstopCount);
+		if (bstopCount > 0) {
+			System.out.println("bstopCount>0");
 			for (int i = 0; i < itemsize; i++) {
 				result.add(new BusStopBean(
 						doc.getElementsByTagName("bstopId").item(i).getChildNodes().item(0).getNodeValue(),
@@ -65,9 +68,11 @@ public class API {
 						doc.getElementsByTagName("gpsY").item(i).getChildNodes().item(0).getNodeValue(),
 						doc.getElementsByTagName("stoptype").item(i).getChildNodes().item(0).getNodeValue()));
 			}
+		}else {
+			result.add(new BusStopBean(null,null,"129.059362360916","35.15332040526",null));
 		}
+		
 		// 파싱 데이터 받아오기 끝
-		result.get(0).getBstopGpsX();
 		return result;
 	}
 }

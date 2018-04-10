@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 </head>
 <body>
 	<c:choose>
@@ -15,7 +15,7 @@
 		<c:when test="${cmd == '/busStopSearch'}">
 			<%@ include file="./bus_stop_search.jsp"%>
 		</c:when>
-		<c:when test="${cmd == '/search'}">
+		<c:when test="${cmd == '/searchbStop'}">
 			<%@ include file="./bus_stop_search.jsp"%>
 		</c:when>
 		<c:otherwise>

@@ -20,7 +20,7 @@
 			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
 		</repository>
 	</repositories>
-
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -47,14 +47,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
-		<!-- toString 멤버변수를 출력해줌 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
-		
+
 		<!-- File Upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -67,8 +60,7 @@
 			<version>1.3.2</version>
 		</dependency>
 
-		<!-- 스프링 데이터 레디스(SDR) 프레임워크는 불필요한 작업과 저장소와 상호작용하는 보일러플레이트한 코드를 제거함으로써, 
-			레디스 키밸류 저장소를 사용하는 스프링 애플리케이션을 쉽게 만들게 해줍니다. -->
+		<!-- redis 경량의 데이터 접근 -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
@@ -156,13 +148,6 @@
 			<version>1.2</version>
 		</dependency>
 
-		<!-- SQL Log 직관적으로 볼수 있는 방법 -->
-		<dependency>
-			<groupId>org.lazyluke</groupId>
-			<artifactId>log4jdbc-remix</artifactId>
-			<version>0.2.7</version>
-		</dependency>
-
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -196,7 +181,7 @@
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
-			<version>12.1.0.2</version>
+			<version>11.2.0.3</version>
 		</dependency>
 
 		<!-- mysql driver -->

@@ -1,12 +1,18 @@
 package bean;
 
 public class BusBean {
-	String buslinenum,bustype,companyid,endpoint,endtime,firsttime,headway,headwayHoli,headwayNorm,headwayPeak,lineId,startpoint;
+	String buslinenum,bustype,companyid,endpoint,endtime,firsttime,headwayHoli,headwayNorm,headwayPeak,lineId,startpoint;
+
+	public BusBean() {}
 	
-	
+	public BusBean(String buslinenum, String lineId) {
+		super();
+		this.buslinenum = buslinenum;
+		this.lineId = lineId;
+	}
 
 	public BusBean(String buslinenum, String bustype, String companyid, String endpoint, String endtime,
-			String firsttime, String headway, String headwayHoli, String headwayNorm, String headwayPeak, String lineId,
+			String firsttime, String headwayHoli, String headwayNorm, String headwayPeak, String lineId,
 			String startpoint) {
 		super();
 		this.buslinenum = buslinenum;
@@ -15,7 +21,6 @@ public class BusBean {
 		this.endpoint = endpoint;
 		this.endtime = endtime;
 		this.firsttime = firsttime;
-		this.headway = headway;
 		this.headwayHoli = headwayHoli;
 		this.headwayNorm = headwayNorm;
 		this.headwayPeak = headwayPeak;
@@ -23,9 +28,30 @@ public class BusBean {
 		this.startpoint = startpoint;
 	}
 	
-
-	public BusBean() {}
-
+	public BusBean(String buslinenum, String bustype, String companyid, String endpoint, String endtime,
+			String firsttime, String lineId, String startpoint) {
+		super();
+		this.buslinenum = buslinenum;
+		this.bustype = bustype;
+		this.companyid = companyid;
+		this.endpoint = endpoint;
+		this.endtime = endtime;
+		this.firsttime = firsttime;
+		this.lineId = lineId;
+		this.startpoint = startpoint;
+	}
+	
+	public BusBean(String buslinenum, String bustype, String endpoint, String endtime, String firsttime, String lineId,
+			String startpoint) {
+		super();
+		this.buslinenum = buslinenum;
+		this.bustype = bustype;
+		this.endpoint = endpoint;
+		this.endtime = endtime;
+		this.firsttime = firsttime;
+		this.lineId = lineId;
+		this.startpoint = startpoint;
+	}
 
 	public String getBuslinenum() {
 		return buslinenum;
@@ -73,14 +99,6 @@ public class BusBean {
 
 	public void setFirsttime(String firsttime) {
 		this.firsttime = firsttime;
-	}
-
-	public String getHeadway() {
-		return headway;
-	}
-
-	public void setHeadway(String headway) {
-		this.headway = headway;
 	}
 
 	public String getHeadwayHoli() {

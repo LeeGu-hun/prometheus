@@ -13,14 +13,14 @@
 	<script>
 		// 지도를 표시할 div 
 		
-		if(${cmd == '/search'}){
-		var mapContainer = document.getElementById('map'), 
-		mapOption = {
-			// 지도의 중심좌표
-			center : new daum.maps.LatLng('${map.bstop.get(0).bstopGpsY}', '${map.bstop.get(0).bstopGpsX}'), 
-			// 지도의 확대 레벨
-			level : 3 
-		};
+		if(${cmd == '/searchbStop'}){
+				var mapContainer = document.getElementById('map'), 
+				mapOption = {
+					// 지도의 중심좌표
+					center : new daum.maps.LatLng('${map.bstop.get(0).bstopGpsY}', '${map.bstop.get(0).bstopGpsX}'), 
+					// 지도의 확대 레벨
+					level : 3 
+				};
 		}
 		else{
 			var mapContainer = document.getElementById('map'), 
@@ -75,6 +75,6 @@
 		}
 		
 	</script>
-	 <button onclick="panTo()">지도이동</button> 
+	
 </body>
 </html>

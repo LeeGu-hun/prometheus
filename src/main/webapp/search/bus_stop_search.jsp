@@ -12,7 +12,7 @@
 <body>
 	<h1>정류소 검색</h1>
 	<div id="home">
-		<form action="search" method="get">
+		<form action="searchbStop" method="get">
 			<div id="header">
 				<table>
 					<tr>

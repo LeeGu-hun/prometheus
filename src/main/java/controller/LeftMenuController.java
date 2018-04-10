@@ -9,12 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.w3c.dom.Element;
+import org.springframework.web.servlet.ModelAndView;
 
 import assembler.API;
+import assembler.ApiBusInfo;
+import assembler.ApiBusLine;
+import assembler.ApiBusNum;
+import bean.BusBean;
+import bean.BusInfoBean;
 import bean.BusStopBean;
 
 
@@ -40,7 +46,7 @@ public class LeftMenuController {
 		return "./main";
 	}
 
-	@RequestMapping("/search")
+	@RequestMapping("/searchbStop")
 	public String search(@RequestParam(value ="busStop",defaultValue="false")String station, Model model, HttpServletRequest request) throws Exception {
 		API api = new API();
 		List<BusStopBean> bstop  = new ArrayList();
@@ -58,6 +64,58 @@ public class LeftMenuController {
 		request.setAttribute("cmd", cmd);
 		
 		return "./main";
+	}
+	
+	@RequestMapping("/searchbnum")
+	public String searchNum(@RequestParam(value = "busNum", defaultValue = "false") String busnum, Model model,HttpServletRequest request)
+			throws Exception {
+		ApiBusNum bNum = new ApiBusNum();
+		System.out.println("들어옴?");
+		List<BusBean> BusNumInfo = new ArrayList();
+		BusNumInfo = bNum.getBusNum(busnum);
+		// System.out.println(BusNumInfo.get(0).getLineId());
+
+		// ApiBusLine bLine = new ApiBusLine();
+		// List<BusInfoBean> BusLine = new ArrayList();
+		// BusLine = bLine.getBusLine(BusNumInfo.get(0).getLineId());
+
+		model.addAttribute("BusNumInfo", BusNumInfo);
+		
+		String requestURI = request.getRequestURI();
+		String ctxPath = request.getContextPath();
+		String cmd = requestURI.substring(ctxPath.length());
+		System.out.println(cmd);
+		request.setAttribute("cmd", cmd);
+
+		return "main";
+	}
+
+	@RequestMapping(value = "/searchBInfo", method = RequestMethod.GET)
+	public ModelAndView searchBusInfo(HttpServletRequest request, Model model) throws Exception {
+		String bId = request.getParameter("buslineId");
+	
+		System.out.println(bId);
+		ModelAndView mav = new ModelAndView();
+		ApiBusInfo bInfo = new ApiBusInfo();
+		List<BusBean> BusInfo = new ArrayList();
+		BusInfo = bInfo.getBusNum(bId);
+
+		ApiBusLine bLine = new ApiBusLine();
+		List<BusInfoBean> BusLine = new ArrayList();
+
+		BusLine = bLine.getBusLine(bId);
+	
+		model.addAttribute("BusLine", BusLine);
+		mav.addObject("BusInfo", BusInfo);
+		mav.setViewName("search/bus_search_info");
+		
+		String requestURI = request.getRequestURI();
+		String ctxPath = request.getContextPath();
+		String cmd = requestURI.substring(ctxPath.length());
+		System.out.println(cmd);
+		request.setAttribute("cmd", cmd);
+		
+		return mav;
 	}
 	
 }
