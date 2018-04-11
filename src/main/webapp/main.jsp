@@ -45,6 +45,17 @@
 			}
 		});
 	}
+	function searchBusStopInfo(bStopId) {
+
+		$.ajax({
+			url : "/prometheus/searchbStopInfo",
+			method : "GET",
+			data : "bStopId=" + bStopId,/* + "&linenum=" + linenum */
+			success : function(msg) {
+				$('#searchbStopResult').html(msg);
+			}
+		});
+	}
 	
 	
 </script>

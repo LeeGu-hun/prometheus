@@ -146,4 +146,26 @@ public class LeftMenuController {
 		
 		return mav;
 	}
+
+	@RequestMapping(value = "/searchbStopInfo", method = RequestMethod.GET)
+	public ModelAndView searchBusStopInfo(HttpServletRequest request, Model model) throws Exception {
+		String bstopId = request.getParameter("bStopId");
+	
+		System.out.println(bstopId);
+		ModelAndView mav = new ModelAndView();
+		ApiBusStopInfo bstopInfo = new ApiBusStopInfo();
+		List<BusStopInfoBean> BusStopInfo = new ArrayList();
+		BusStopInfo = bstopInfo.busStopInfo(bstopId);
+
+		mav.addObject("BusStopInfo", BusStopInfo);
+		mav.setViewName("include/bus_node_bstop_view");
+		
+		String requestURI = request.getRequestURI();
+		String ctxPath = request.getContextPath();
+		String cmd = requestURI.substring(ctxPath.length());
+		System.out.println(cmd);
+		request.setAttribute("cmd", cmd);
+		
+		return mav;
+	}
 }

@@ -9,21 +9,21 @@
 </head>
 <body>
 	<div id="bStopbody">
-		<table style="width: 100%; height: 100%;">
+		<table>
 			<c:forEach var="b" items="${map.bstop }" varStatus="i">
 				<tr>
-					<td><input type="hidden" id="bstopId" value="${b.bstopId }" />
-						<input type="hidden" id="bstopId" value="${b.bstopGpsX }" /> <input
-						type="hidden" id="bstopId" value="${b.bstopGpsY }" /></td>
 					<td>
-						<label>[${b.bstopType }]</label> <label>${b.bstopName }</label>
-					</td>
-					<td align="right">
-						<button onclick="panTo('${b.bstopGpsX }','${b.bstopGpsY }','${b.bstopName }')">위치보기</button> 
-					</td>						
+						<input type="hidden" id="bstopId" value="${b.bstopId }" />
+						<input type="hidden" id="bstopId" value="${b.bstopGpsX }" />
+						<input	type="hidden" id="bstopId" value="${b.bstopGpsY }" /></td>
+					<td>
+					<label>[${b.bstopType }]</label>
+					<label>정류소명 : <a href="#" class="busStopName" onclick="searchBusStopInfo('${b.bstopId }');">${b.bstopName } </a></label>
+					<button onclick="panTo('${b.bstopGpsX }','${b.bstopGpsY }','${b.bstopName }')">지도이동</button> </td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
+	<div id="searchbStopResult"></div>
 </body>
 </html>
