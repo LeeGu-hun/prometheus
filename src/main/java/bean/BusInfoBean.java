@@ -1,15 +1,25 @@
 package bean;
 
 public class BusInfoBean {
-	String arsNo,avgtm,bstopIdx,bstopnm,carNo,direction,gpsTm,lat,lineNo,lon,lowplate,nodeId,nodeKn,rpoint;
-	
-	
-	
+	String arsNo;		// 정류소 번호
+	String avgtm;		// 평균시간
+	String bstopIdx;	// 노선 정류소 순번
+	String bstopnm;		// 정류소명
+	String carNo;		// 차량번호
+	String direction;	// 버스 운행 방향
+	String gpsTm;		// GPS 연결시간 (HH24 : Mi : SS)
+	String lat;			// 버스 gps Y 좌표
+	String lineNo;		// 노선번호
+	String lon;			// 버스 gps X 좌표
+	String lowplate;	// 저상버스구분 (0:일반 1:저상)
+	String nodeId;		// 노드ID
+	String nodeKn;		// 노드종류 (0:교차로 3: 정류소)
+	String rpoint;		// 회차지 구분 (0:일반 1:회차지)
 
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String carNo, String direction,
 			String gpsTm, String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn,
 			String rpoint) {
-	
+
 		this.arsNo = arsNo;
 		this.avgtm = avgtm;
 		this.bstopIdx = bstopIdx;
@@ -25,8 +35,6 @@ public class BusInfoBean {
 		this.nodeKn = nodeKn;
 		this.rpoint = rpoint;
 	}
-	
-	
 
 	public BusInfoBean(String avgtm, String bstopIdx, String bstopnm, String carNo, String direction, String gpsTm,
 			String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn, String rpoint) {
@@ -46,11 +54,9 @@ public class BusInfoBean {
 		this.rpoint = rpoint;
 	}
 
-
-
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String lineNo, String nodeId,
 			String rpoint) {
-	
+
 		this.arsNo = arsNo;
 		this.avgtm = avgtm;
 		this.bstopIdx = bstopIdx;
@@ -59,8 +65,6 @@ public class BusInfoBean {
 		this.nodeId = nodeId;
 		this.rpoint = rpoint;
 	}
-
-
 
 	public BusInfoBean(String avgtm, String bstopIdx, String bstopnm, String lineNo, String nodeId, String rpoint) {
 		super();
@@ -72,8 +76,6 @@ public class BusInfoBean {
 		this.rpoint = rpoint;
 	}
 
-
-
 	public BusInfoBean(String bstopIdx, String bstopnm, String lineNo, String nodeId) {
 		super();
 		this.bstopIdx = bstopIdx;
@@ -82,9 +84,8 @@ public class BusInfoBean {
 		this.nodeId = nodeId;
 	}
 
-
-
-	public BusInfoBean() { }
+	public BusInfoBean() {
+	}
 
 	public String getArsNo() {
 		return arsNo;
@@ -197,6 +198,5 @@ public class BusInfoBean {
 	public void setRpoint(String rpoint) {
 		this.rpoint = rpoint;
 	}
-	
-	
+
 }

@@ -1,10 +1,21 @@
 package bean;
 
 public class BusBean {
-	String buslinenum,bustype,companyid,endpoint,endtime,firsttime,headwayHoli,headwayNorm,headwayPeak,lineId,startpoint;
+	String buslinenum;	//버스번호
+	String lineId;		//노선ID
+	String bustype;		//버스 종류
+	String companyid;	//버스회사명
+	String startpoint;	//기점명(버스출발지)
+	String endpoint;	//종점명(버스도착지)
+	String firsttime;	//첫차시간
+	String endtime;		//막차시간
+	String headwayNorm;	//배차간격(분)(일반)
+	String headwayPeak;	//배차간격(분)(출퇴근)
+	String headwayHoli;	//배차간격(분)(휴일)
 
-	public BusBean() {}
-	
+	public BusBean() {
+	}
+
 	public BusBean(String buslinenum, String lineId) {
 		super();
 		this.buslinenum = buslinenum;
@@ -27,7 +38,7 @@ public class BusBean {
 		this.lineId = lineId;
 		this.startpoint = startpoint;
 	}
-	
+
 	public BusBean(String buslinenum, String bustype, String companyid, String endpoint, String endtime,
 			String firsttime, String lineId, String startpoint) {
 		super();
@@ -40,7 +51,7 @@ public class BusBean {
 		this.lineId = lineId;
 		this.startpoint = startpoint;
 	}
-	
+
 	public BusBean(String buslinenum, String bustype, String endpoint, String endtime, String firsttime, String lineId,
 			String startpoint) {
 		super();
@@ -140,7 +151,5 @@ public class BusBean {
 	public void setStartpoint(String startpoint) {
 		this.startpoint = startpoint;
 	}
-	
-	
 
 }

@@ -2,8 +2,24 @@ package bean;
 
 public class BusStopInfoBean {
 
-	String arsNo, bstopId, bstopIdx, bustype, carNo1, carNo2, gpsX, gpsY, lineNo, lineid, lowplate1, lowplate2, min1,
-			min2, nodeNm, station1, station2;
+	String arsNo;		//정류소 번호
+	String bstopId;		//정류소 ID
+	String nodeNm;		//정류소명
+	String gpsX;		//정류소GPS좌표 X
+	String gpsY;		//정류소GPS좌표 Y
+	String bustype;		//버스종류(일반/마을)
+	String lineNo;		//버스번호
+	String lineid;		//노선ID
+	String bstopIdx;	//노선 정류소 순번
+	String carNo1;		//첫번쨰 차량번호
+	String carNo2;		//두번째 차량번호
+	String min1;		//첫번째 차량 남은 도착시간
+	String min2;		//두번째 차량 남은 도착시간
+	String station1;	//첫번째 차량 남은 정류소 수
+	String station2;	//두번째 차량 남은 도착시간
+	String lowplate1;	//첫번째 차량 저상버스구분 (0:일반 1:저상)
+	String lowplate2;	//두번째 차량 저상버스구분 (0:일반 1:저상)
+
 
 	public BusStopInfoBean() {
 	}
@@ -30,8 +46,6 @@ public class BusStopInfoBean {
 		this.station1 = station1;
 		this.station2 = station2;
 	}
-	
-	
 
 	public BusStopInfoBean(String bstopId, String bstopIdx, String bustype, String carNo1, String carNo2, String gpsX,
 			String gpsY, String lineNo, String lineid, String lowplate1, String lowplate2, String min1, String min2,
@@ -54,8 +68,6 @@ public class BusStopInfoBean {
 		this.station1 = station1;
 		this.station2 = station2;
 	}
-	
-	
 
 	public BusStopInfoBean(String arsNo, String bstopId, String bstopIdx, String bustype, String carNo1, String gpsX,
 			String gpsY, String lineNo, String lineid, String lowplate1, String min1, String nodeNm, String station1) {
@@ -74,8 +86,6 @@ public class BusStopInfoBean {
 		this.nodeNm = nodeNm;
 		this.station1 = station1;
 	}
-	
-	
 
 	public BusStopInfoBean(String bstopId, String bstopIdx, String bustype, String carNo1, String gpsX, String gpsY,
 			String lineNo, String lineid, String lowplate1, String min1, String nodeNm, String station1) {

@@ -89,9 +89,12 @@
 		}
 		// 지도 생성
 		var map = new daum.maps.Map(mapContainer, mapOption); 
+		var markers = [];
 		
-
 		function panTo(GpsX,GpsY,bname) {
+			 for (var i = 0; i < markers.length; i++) {
+			        markers[i].setMap(null);
+			    }      
 			// 이동할 위도 경도 위치 생성함
 			var moveLatLon = new daum.maps.LatLng(GpsY, GpsX);
 	
@@ -108,6 +111,9 @@
 
 			// 마커 삽입
 			marker.setMap(map);
+			
+			// 생성된 마커를 배열에 추가합니다
+		    markers.push(marker);
 			
 			// 대가리 표시 내용으로 HTML 문자열이나 document element가 가능
 			var iwContent = '<div style="padding:5px;">'+bname+'</div>'; 

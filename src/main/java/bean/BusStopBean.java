@@ -1,11 +1,11 @@
 package bean;
 
 public class BusStopBean {
-	String bstopId;
-	String bstopName;
-	String bstopGpsX;
-	String bstopGpsY;
-	String bstopType;
+	String bstopId; //정류소 아이디
+	String bstopName; // 정류소명
+	String bstopGpsX; //정류소 gps좌표 x
+	String bstopGpsY; //정류소 gps좌표 y
+	String bstopType; //버스타입(일반/마을)
 	
 	
 	public BusStopBean() {}
