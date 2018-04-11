@@ -43,7 +43,7 @@
 					<td>${bl.bstopIdx }</td>
 					<td><a href="#" onclick="blineGps('${bl.nodeId }')">${bl.bstopnm }</td>
 					<td>${bl.carNo }</td>
-
+					<td>${bl.crowded }</td>
 
 				</tr>
 

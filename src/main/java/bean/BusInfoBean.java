@@ -15,10 +15,10 @@ public class BusInfoBean {
 	String nodeId;		// 노드ID
 	String nodeKn;		// 노드종류 (0:교차로 3: 정류소)
 	String rpoint;		// 회차지 구분 (0:일반 1:회차지)
-
+	String crowded;		
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String carNo, String direction,
 			String gpsTm, String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn,
-			String rpoint) {
+			String rpoint, String crowded) {
 
 		this.arsNo = arsNo;
 		this.avgtm = avgtm;
@@ -34,10 +34,12 @@ public class BusInfoBean {
 		this.nodeId = nodeId;
 		this.nodeKn = nodeKn;
 		this.rpoint = rpoint;
+		this.crowded = crowded;
 	}
 
 	public BusInfoBean(String avgtm, String bstopIdx, String bstopnm, String carNo, String direction, String gpsTm,
-			String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn, String rpoint) {
+			String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn, String rpoint,
+			String crowded) {
 		super();
 		this.avgtm = avgtm;
 		this.bstopIdx = bstopIdx;
@@ -52,6 +54,7 @@ public class BusInfoBean {
 		this.nodeId = nodeId;
 		this.nodeKn = nodeKn;
 		this.rpoint = rpoint;
+		this.crowded = crowded;
 	}
 
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String lineNo, String nodeId,
@@ -197,6 +200,14 @@ public class BusInfoBean {
 
 	public void setRpoint(String rpoint) {
 		this.rpoint = rpoint;
+	}
+
+	public String getCrowded() {
+		return crowded;
+	}
+
+	public void setCrowded(String crowded) {
+		this.crowded = crowded;
 	}
 
 }
