@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,9 +18,11 @@ import assembler.API;
 import assembler.ApiBusInfo;
 import assembler.ApiBusLine;
 import assembler.ApiBusNum;
+import assembler.ApiBusStopInfo;
 import bean.BusBean;
 import bean.BusInfoBean;
 import bean.BusStopBean;
+import bean.BusStopInfoBean;
 
 
 @Controller
@@ -118,4 +119,32 @@ public class LeftMenuController {
 		return mav;
 	}
 	
+	@RequestMapping(value = "/searchBGps", method = RequestMethod.GET)
+	public ModelAndView searchBusNodeGps(HttpServletRequest request) throws Exception {
+		String bNodeId = request.getParameter("busNodeId");
+		ApiBusStopInfo stopNodeInfo = new ApiBusStopInfo();
+//		System.out.println(bNodeId);
+		List<BusStopInfoBean> BusStopInfo = stopNodeInfo.busStopInfo(bNodeId);
+		String x = BusStopInfo.get(0).getGpsX();
+		String y = BusStopInfo.get(0).getGpsY();
+		String failedResult = "서비스를 지원하지 않는 정류장 입니다.";
+		String node = BusStopInfo.get(0).getNodeNm();
+//		System.out.println(x);
+//		System.out.println(y);
+//		System.out.println(node);
+		
+		ModelAndView mav = new ModelAndView();
+//		if(x.equals(null)) {
+//			mav.addObject("failedResult",failedResult);
+//			mav.setViewName("include/bus_node_map_view");
+//			
+//			return mav;
+//		}
+		String buf = "<script>panTo('"+x+"','"+y+"','"+node+"');</script>";
+		mav.addObject("pantoResult", buf);
+		mav.setViewName("include/bus_node_map_view");
+		
+		
+		return mav;
+	}
 }

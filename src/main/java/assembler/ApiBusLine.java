@@ -52,10 +52,8 @@ public class ApiBusLine {
 		Document doc = builder.parse("./BUSLINETEST");
 		doc.getDocumentElement().normalize();
 
-Element item = (Element) doc.getElementsByTagName("item").item(0);
-		
+		Element item = (Element) doc.getElementsByTagName("item").item(0);
 		Element item1 = (Element) doc.getElementsByTagName("item").item(1);
-		String bstopnm =item1.getElementsByTagName("bstopnm").item(0).getChildNodes().item(0).getNodeValue();
 		int nodesize = item1.getChildNodes().getLength();
 
 		int itemsize = doc.getElementsByTagName("item").getLength();
@@ -127,9 +125,9 @@ Element item = (Element) doc.getElementsByTagName("item").item(0);
 						));
 			}
 		}
-		for(int i = 0; i <carnum.size();i++) {
-		System.out.println(carnum.get(i));
-		}
+//		for(int i = 0; i <carnum.size();i++) {
+//		System.out.println(carnum.get(i));
+//		}
 		return TEST;
 	}
 }

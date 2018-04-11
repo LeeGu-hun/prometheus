@@ -29,7 +29,19 @@
 			method : "GET",
 			data : "buslineId=" + buslineId,/* + "&linenum=" + linenum */
 			success : function(response) {
-				$('#searchResult').html(response);
+				$('#searchNumResult').html(response);
+			}
+		});
+	}
+	
+	function blineGps(busNodeId) {
+
+		$.ajax({
+			url : "/prometheus/searchBGps",
+			method : "GET",
+			data : "busNodeId=" + busNodeId,/* + "&linenum=" + linenum */
+			success : function(msg) {
+				$('#loadMapGps').html(msg);
 			}
 		});
 	}
@@ -66,8 +78,7 @@
 					// 지도의 확대 레벨
 					level : 3 
 				};
-		}
-		else{
+		}else{
 			var mapContainer = document.getElementById('map'), 
 			mapOption = {
 				// 지도의 중심좌표 X=,Y=
