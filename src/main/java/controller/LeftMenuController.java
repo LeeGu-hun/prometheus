@@ -106,9 +106,9 @@ public class LeftMenuController {
 
 		BusLine = bLine.getBusLine(bId);
 	
-		model.addAttribute("BusLine", BusLine);
+		mav.addObject("BusLine", BusLine);
 		mav.addObject("BusInfo", BusInfo);
-		mav.setViewName("search/bus_search_info");
+		mav.setViewName("include/bus_node_search_view");
 		
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
@@ -127,7 +127,6 @@ public class LeftMenuController {
 		List<BusStopInfoBean> BusStopInfo = stopNodeInfo.busStopInfo(bNodeId);
 		String x = BusStopInfo.get(0).getGpsX();
 		String y = BusStopInfo.get(0).getGpsY();
-		String failedResult = "서비스를 지원하지 않는 정류장 입니다.";
 		String node = BusStopInfo.get(0).getNodeNm();
 //		System.out.println(x);
 //		System.out.println(y);
