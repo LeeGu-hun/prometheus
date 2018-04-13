@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.taglibs.standard.tag.common.xml.ForEachTag;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,7 +72,6 @@ public class LeftMenuController {
 	public String searchNum(@RequestParam(value = "busNum", defaultValue = "false") String busnum, Model model,HttpServletRequest request)
 			throws Exception {
 		ApiBusNum bNum = new ApiBusNum();
-		System.out.println("들어옴?");
 		List<BusBean> BusNumInfo = new ArrayList();
 		BusNumInfo = bNum.getBusNum(busnum);
 		// System.out.println(BusNumInfo.get(0).getLineId());
@@ -150,21 +150,37 @@ public class LeftMenuController {
 	@RequestMapping(value = "/searchbStopInfo", method = RequestMethod.GET)
 	public ModelAndView searchBusStopInfo(HttpServletRequest request, Model model) throws Exception {
 		String bstopId = request.getParameter("bStopId");
-	
-		System.out.println(bstopId);
+		String gpsX = request.getParameter("bstopGpsX");
+		String gpsY = request.getParameter("bstopGpsY");
+		String name = request.getParameter("bstopName");
+		
+		
+		
 		ModelAndView mav = new ModelAndView();
 		ApiBusStopInfo bstopInfo = new ApiBusStopInfo();
-		List<BusStopInfoBean> BusStopInfo = new ArrayList();
-		BusStopInfo = bstopInfo.busStopInfo(bstopId);
-
-		mav.addObject("BusStopInfo", BusStopInfo);
-		mav.setViewName("include/bus_node_bstop_view");
+		List<BusStopInfoBean> busStopInfo = new ArrayList();
+		busStopInfo = bstopInfo.busStopInfo(bstopId);
 		
-		String requestURI = request.getRequestURI();
-		String ctxPath = request.getContextPath();
-		String cmd = requestURI.substring(ctxPath.length());
-		System.out.println(cmd);
-		request.setAttribute("cmd", cmd);
+		String conOverLay ="<div class=\"wrap\">"
+							+ "<div class=\"info\">"
+							+ "<div class=\"title\">"
+							+ name+ "<div class=\"close\" onclick=\"closeOverlay()\" title=\"닫기\"></div>"
+							+ "</div>"
+							+ "<div class=\"body\">"
+							+ "<div class=\"desc\">";
+		for (int i = 0; i < busStopInfo.size(); i++) {
+			conOverLay += "<div class=\"ellipsis\">" + busStopInfo.get(i).getLineNo()+"번 버스</div>";
+			conOverLay += "<div class=\"jibun ellipsis\"> [첫번째 차량]  " + busStopInfo.get(i).getStation1()+"정거장 전  "
+			+ busStopInfo.get(i).getMin1()+"분 후 도착 </div>";
+			conOverLay += "<div class=\"jibun ellipsis\"> [두번째 차량]  " + busStopInfo.get(i).getStation2()+"정거장 전  "
+			+ busStopInfo.get(i).getMin2()+"분 후 도착 </div>";
+		}
+		
+		conOverLay += "</div>" + "</div>" + "</div>" + "</div>";
+	
+		String buf = "<script>overlay('"+conOverLay+"','"+gpsX+"','"+gpsY+"','"+name+"');</script>";
+		mav.addObject("bSIResult", buf); //busStopInfo
+		mav.setViewName("include/bus_node_bstop_view");
 		
 		return mav;
 	}

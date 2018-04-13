@@ -1,6 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -16,7 +16,8 @@
 	type="text/css" media="all" />
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
 	type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"
 	type="text/javascript"></script>
@@ -45,12 +46,19 @@
 			}
 		});
 	}
-	function searchBusStopInfo(bStopId) {
-
+	function searchBusStopInfo(bStopId,bstopGpsX,bstopGpsY,bstopName) {
+		var allData = {
+				"bStopId" : bStopId,
+				"bstopGpsX" : bstopGpsX,
+				"bstopGpsY" : bstopGpsY,
+				"bstopName" : bstopName
+			};
+		
+		
 		$.ajax({
 			url : "/prometheus/searchbStopInfo",
 			method : "GET",
-			data : "bStopId=" + bStopId,/* + "&linenum=" + linenum */
+			data : allData,/* + "&linenum=" + linenum */
 			success : function(msg) {
 				$('#searchbStopResult').html(msg);
 			}
@@ -61,9 +69,10 @@
 </script>
 </head>
 <body>
-	<div id="main" >
+	<div id="main">
 		<h1>메인페이지</h1>
-		<div id="left" style="background-color: yellow;	 float: left; width:20%; height: 800px; text-align: left;">
+		<div id="left"
+			style="background-color: yellow; float: left; width: 20%; height: 800px; text-align: left;">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>
 			</div>
@@ -76,9 +85,9 @@
 		</div>
 		<div id="right" style="float: left; width: 80%; height: 800px;">
 			<div id="map" style="width: 100%; height: 800px;"></div>
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66a85d4816bb221219a1d74fd28e15d3"></script>
-	<script>
+			<script type="text/javascript"
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66a85d4816bb221219a1d74fd28e15d3"></script>
+			<script>
 		// 지도를 표시할 div 
 		
 		if(${cmd == '/searchbStop'}){
@@ -101,6 +110,51 @@
 		// 지도 생성
 		var map = new daum.maps.Map(mapContainer, mapOption); 
 		var markers = [];
+		
+		function overlay(conOverLay, GpsX,GpsY,bname){
+			 for (var i = 0; i < markers.length; i++) {
+			        markers[i].setMap(null);
+			    }      
+			// 이동할 위도 경도 위치 생성함
+			var moveLatLon = new daum.maps.LatLng(GpsY, GpsX);
+	
+			//부드럽게 지도 중심 이동(너무 멀땐 안됨)
+			map.panTo(moveLatLon);
+			
+			// 마커 위도 경도 위치 생성
+			var markerPosition = new daum.maps.LatLng(GpsY, GpsX); 
+
+			// 마커 생성
+			var marker = new daum.maps.Marker({
+			    position: markerPosition
+			});
+
+			var content = conOverLay;
+			
+			// 마커 위에 커스텀오버레이를 표시합니다
+			// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+			var overlay = new daum.maps.CustomOverlay({
+			    content: content,
+			    map: map,
+			    position: marker.getPosition()       
+			});
+			
+			// 마커 삽입
+			marker.setMap(map);
+		    overlay.setMap(map);
+
+		    // 생성된 마커를 배열에 추가합니다
+		    markers.push(marker);
+		    markers.push(overlay);			
+				
+		}
+		
+		// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+		function closeOverlay() {
+			 for (var i = 0; i < markers.length; i++) {
+			        markers[i].setMap(null);
+			    }        
+		}
 		
 		function panTo(GpsX,GpsY,bname) {
 			 for (var i = 0; i < markers.length; i++) {
