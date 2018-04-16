@@ -24,7 +24,6 @@
 	<mvc:resources mapping="/upload/**" location="/upload/" />
 	<mvc:resources mapping="/**" location="/**" />
 	
-
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/" />

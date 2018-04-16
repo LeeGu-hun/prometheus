@@ -159,23 +159,50 @@ public class LeftMenuController {
 		List<BusStopInfoBean> busStopInfo = new ArrayList();
 		busStopInfo = bstopInfo.busStopInfo(bstopId);
 
+		// map에 버스 정보
 		StringBuffer conOverLay = new StringBuffer();
 
-		conOverLay.append("<div class=\"wrap\">");
-		conOverLay.append("<div class=\"info\">");
-		conOverLay.append("<div class=\"title\">");
-		conOverLay.append(name + "<div class=\"close\" onclick=\"closeOverlay()\" title=\"닫기\"></div>");
-		conOverLay.append("</div>");
-		conOverLay.append("<div class=\"body\">");
-		conOverLay.append("<div class=\"desc\">");
+		conOverLay.append("<div class=\"wrap\">"); //wrap
+		conOverLay.append("<div class=\"info\">"); //2
+		conOverLay.append("<div class=\"title\">"); 
+		conOverLay.append(name + "[" + busStopInfo.get(0).getArsNo()
+				+ "] <div class=\"close\" onclick=\"closeOverlay()\" title=\"닫기\"></div></div>"); //title
+		conOverLay.append("<div class=\"body\">");//3
+		conOverLay.append("<div class=\"desc\">");//4
 		for (int i = 0; i < busStopInfo.size(); i++) {
-			conOverLay.append("<div class=\"ellipsis\">" + busStopInfo.get(i).getLineNo() + "번 버스</div>");
-			conOverLay.append("<div class=\"jibun ellipsis\"> [첫번째 차량]  " + busStopInfo.get(i).getStation1() + "정거장 전  "
-					+ busStopInfo.get(i).getMin1() + "분 후 도착 </div>");
-			conOverLay.append("<div class=\"jibun ellipsis\"> [두번째 차량]  " + busStopInfo.get(i).getStation2() + "정거장 전  "
-					+ busStopInfo.get(i).getMin2() + "분 후 도착 </div>");
+			conOverLay.append("<div class=\"mapBusTable\">");//5
+			conOverLay.append("<div class=\"busNumGps\" align= left>");//7
+			conOverLay.append("<div class=\"ellipsis\">" + busStopInfo.get(i).getLineNo() + "번 버스");
+			if (busStopInfo.get(i).getCarNo1() == null) {
+				conOverLay.append("<span class=\"jibun\"> [정보없음]</span></div>");//ellipsis
+				conOverLay.append("</div>"); //busNumGps
+				conOverLay.append("<div class=\"busImg\" align= left ></div>");//busImg
+			}else if(busStopInfo.get(i).getCarNo2() == null) {
+				conOverLay.append("</div>");//ellipsis
+				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo1() + "] "
+						+ busStopInfo.get(i).getStation1() + "정거장 전  " + busStopInfo.get(i).getMin1()
+						+ "분 후 도착  </div>"); //jibun ellipsis
+				conOverLay.append("</div>");//busNumGps
+				conOverLay.append("<div class=\"busImg\" align= left>");
+				conOverLay.append(busStopInfo.get(i).getCrowded1());
+				conOverLay.append("</div>");//busImg
+			}else {
+				conOverLay.append("</div>");//ellipsis
+				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo1() + "] "
+						+ busStopInfo.get(i).getStation1() + "정거장 전  " + busStopInfo.get(i).getMin1()
+						+ "분 후 도착  </div>");//jibun ellipsis
+				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo2() + "] "
+						+ busStopInfo.get(i).getStation2() + "정거장 전  " + busStopInfo.get(i).getMin2()
+						+ "분 후 도착  </div>");//jibun ellipsis
+				conOverLay.append("</div>");//busNumGps
+				conOverLay.append("<div class=\"busImg\" align= left>");
+				conOverLay.append("<img class=\"crowdedImg\" src=\"./images/1.png\">");
+				conOverLay.append(busStopInfo.get(i).getCrowded2());
+				conOverLay.append("</div>");//busImg
+			}
+			conOverLay.append("</div>");//busInfo
 		}
-		conOverLay.append("</div>" + "</div>" + "</div>" + "</div>");
+		conOverLay.append("</div>" + "</div>" + "</div>" + "</div>");// /desc/body/info/wrap
 
 		String buf = "<script>overlay('" + conOverLay + "','" + gpsX + "','" + gpsY + "','" + name + "');</script>";
 		mav.addObject("bSIResult", buf); // busStopInfo

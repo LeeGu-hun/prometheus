@@ -60,6 +60,8 @@ public class ApiBusStopInfo {
 
 		for (int i = 0; i < itemsize; i++) {
 			if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 17) {
+				String crowded1 = (int)(Math.random() * 45)+"";
+				String crowded2 = (int)(Math.random() * 45)+"";
 				result.add(new BusStopInfoBean(
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
@@ -77,9 +79,12 @@ public class ApiBusStopInfo {
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue()
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue(),
+						crowded1,crowded2
 						));
 			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 16) {
+				String crowded1 = (int)(Math.random() * 45)+"";
+				String crowded2 = (int)(Math.random() * 45)+"";
 				result.add(new BusStopInfoBean(
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
@@ -96,9 +101,11 @@ public class ApiBusStopInfo {
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue()
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue(),
+						crowded1,crowded2
 						));
 			}  else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 13) {
+				String crowded1 = (int)(Math.random() * 45)+"";
 				result.add(new BusStopInfoBean(
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
@@ -112,9 +119,11 @@ public class ApiBusStopInfo {
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue()
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
+						crowded1
 						));
 			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 12) {
+				String crowded1 = (int)(Math.random() * 45)+"";
 				result.add(new BusStopInfoBean(
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
@@ -127,7 +136,8 @@ public class ApiBusStopInfo {
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
 						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue()
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
+						crowded1
 						));
 			}
 			
