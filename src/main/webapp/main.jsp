@@ -70,6 +70,7 @@
 </head>
 <body>
 	<div id="main">
+		
 		<h1>메인페이지</h1>
 		<div id="left"
 			style="background-color: yellow; float: left; width: 20%; height: 800px; text-align: left;">

@@ -29,6 +29,10 @@
 		<mvc:jsp prefix="/" />
 	</mvc:view-resolvers>
 	
+	<mvc:resources location="/css/**" mapping="/css/**"/>
+	<mvc:resources location="/images/**" mapping="/images/**"/>
+	<mvc:resources location="/js/**" mapping="/js/**"/>
+	
 	<!-- file upload를 위한 MultipartResolver 객체 등록 -->
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

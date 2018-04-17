@@ -196,8 +196,8 @@ public class LeftMenuController {
 						+ "분 후 도착  </div>");//jibun ellipsis
 				conOverLay.append("</div>");//busNumGps
 				conOverLay.append("<div class=\"busImg\" align= left>");
-				conOverLay.append("<img class=\"crowdedImg\" src=\"./images/1.png\">");
-				conOverLay.append(busStopInfo.get(i).getCrowded2());
+				conOverLay.append("<img class=\"crowdedImg\" src=\"http://postfiles8.naver.net/MjAxODA0MTZfOTcg/MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png?type=w3\">");
+				conOverLay.append("<img class=\"crowdedImg\" src=\"http://postfiles13.naver.net/MjAxODA0MTZfNDEg/MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png?type=w3\">");
 				conOverLay.append("</div>");//busImg
 			}
 			conOverLay.append("</div>");//busInfo
