@@ -162,45 +162,90 @@ public class LeftMenuController {
 		// map에 버스 정보
 		StringBuffer conOverLay = new StringBuffer();
 
-		conOverLay.append("<div class=\"wrap\">"); //wrap
-		conOverLay.append("<div class=\"info\">"); //2
-		conOverLay.append("<div class=\"title\">"); 
+		conOverLay.append("<div class=\"wrap\">"); // wrap
+		conOverLay.append("<div class=\"info\">"); // 2
+		conOverLay.append("<div class=\"title\">");
 		conOverLay.append(name + "[" + busStopInfo.get(0).getArsNo()
-				+ "] <div class=\"close\" onclick=\"closeOverlay()\" title=\"닫기\"></div></div>"); //title
-		conOverLay.append("<div class=\"body\">");//3
-		conOverLay.append("<div class=\"desc\">");//4
+				+ "] <div class=\"close\" onclick=\"closeOverlay()\" title=\"닫기\"></div></div>"); // title
+		conOverLay.append("<div class=\"body\">");// 3
+		conOverLay.append("<div class=\"desc\">");// 4
 		for (int i = 0; i < busStopInfo.size(); i++) {
-			conOverLay.append("<div class=\"mapBusTable\">");//5
-			conOverLay.append("<div class=\"busNumGps\" align= left>");//7
+			conOverLay.append("<div class=\"mapBusTable\">");// 5
+			conOverLay.append("<div class=\"busNumGps\" align= left>");// 7
 			conOverLay.append("<div class=\"ellipsis\">" + busStopInfo.get(i).getLineNo() + "번 버스");
 			if (busStopInfo.get(i).getCarNo1() == null) {
-				conOverLay.append("<span class=\"jibun\"> [정보없음]</span></div>");//ellipsis
-				conOverLay.append("</div>"); //busNumGps
-				conOverLay.append("<div class=\"busImg\" align= left ></div>");//busImg
-			}else if(busStopInfo.get(i).getCarNo2() == null) {
-				conOverLay.append("</div>");//ellipsis
+				conOverLay.append("<span class=\"jibun\"> [정보없음]</span></div>");// ellipsis
+				conOverLay.append("</div>"); // busNumGps
+				conOverLay.append("<div class=\"busImgs\" align= left ></div>");// busImg
+			} else if (busStopInfo.get(i).getCarNo2() == null) {
+				conOverLay.append("</div>");// ellipsis
 				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo1() + "] "
 						+ busStopInfo.get(i).getStation1() + "정거장 전  " + busStopInfo.get(i).getMin1()
-						+ "분 후 도착  </div>"); //jibun ellipsis
-				conOverLay.append("</div>");//busNumGps
-				conOverLay.append("<div class=\"busImg\" align= left>");
-				conOverLay.append(busStopInfo.get(i).getCrowded1());
-				conOverLay.append("</div>");//busImg
-			}else {
-				conOverLay.append("</div>");//ellipsis
+						+ "분 후 도착  </div>"); // jibun ellipsis
+				conOverLay.append("</div>");// busNumGps
+				conOverLay.append("<div class=\"busImgs\" align= left>");
+				conOverLay.append("<div class=\"busimg\" align= center>");
+				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
+				if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) <= 20) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
+							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
+							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
+				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) < 35) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
+							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
+							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
+				} else {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfMTQg/"
+							+ "MDAxNTIzODY5MjU3NDgx.a8kS9vmgZcV8xZQ6LMjBbmzsEytJIEfENusu_i2H4qkg.xVRPaORFC6BEuTdY0su_"
+							+ "5DtsQrro_1EOHl2xgKTf7E0g.PNG.aaz77/3.png\">");
+				}
+				conOverLay.append("</div>");// firstBus
+				conOverLay.append("</div>");// busImg
+			} else {
+				conOverLay.append("</div>");// ellipsis
 				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo1() + "] "
 						+ busStopInfo.get(i).getStation1() + "정거장 전  " + busStopInfo.get(i).getMin1()
-						+ "분 후 도착  </div>");//jibun ellipsis
+						+ "분 후 도착  </div>");// jibun ellipsis
 				conOverLay.append("<div class=\"jibun ellipsis\"> [" + busStopInfo.get(i).getCarNo2() + "] "
 						+ busStopInfo.get(i).getStation2() + "정거장 전  " + busStopInfo.get(i).getMin2()
-						+ "분 후 도착  </div>");//jibun ellipsis
-				conOverLay.append("</div>");//busNumGps
-				conOverLay.append("<div class=\"busImg\" align= left>");
-				conOverLay.append("<img class=\"crowdedImg\" src=\"http://postfiles8.naver.net/MjAxODA0MTZfOTcg/MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png?type=w3\">");
-				conOverLay.append("<img class=\"crowdedImg\" src=\"http://postfiles13.naver.net/MjAxODA0MTZfNDEg/MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png?type=w3\">");
-				conOverLay.append("</div>");//busImg
+						+ "분 후 도착  </div>");// jibun ellipsis
+				conOverLay.append("</div>");// busNumGps
+				conOverLay.append("<div class=\"busImgs\" align= left>");
+				conOverLay.append("<div class=\"busimg\" align= center>");
+				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
+				if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) <= 20) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
+							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
+							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
+				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) < 35) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
+							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
+							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
+				} else {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfMTQg/"
+							+ "MDAxNTIzODY5MjU3NDgx.a8kS9vmgZcV8xZQ6LMjBbmzsEytJIEfENusu_i2H4qkg.xVRPaORFC6BEuTdY0su_"
+							+ "5DtsQrro_1EOHl2xgKTf7E0g.PNG.aaz77/3.png\">");
+				}
+				conOverLay.append("</div>");// firstBus
+				conOverLay.append("<div class=\"busimg\" align= center>");
+				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo2() + "]</p>");
+				if (Integer.parseInt(busStopInfo.get(i).getCrowded2()) <= 20) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
+							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
+							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
+				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded2()) < 35) {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
+							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
+							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
+				} else {
+					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfMTQg/"
+							+ "MDAxNTIzODY5MjU3NDgx.a8kS9vmgZcV8xZQ6LMjBbmzsEytJIEfENusu_i2H4qkg.xVRPaORFC6BEuTdY0su_"
+							+ "5DtsQrro_1EOHl2xgKTf7E0g.PNG.aaz77/3.png\">");
+				}
+				conOverLay.append("</div>");// secondBus
+				conOverLay.append("</div>");// busImg
 			}
-			conOverLay.append("</div>");//busInfo
+			conOverLay.append("</div>");// busInfo
 		}
 		conOverLay.append("</div>" + "</div>" + "</div>" + "</div>");// /desc/body/info/wrap
 

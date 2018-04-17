@@ -13,11 +13,13 @@
     .info .desc {width:362px; height: 250px; overflow: auto;}
     .desc .ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
     .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .busImg {border: 1px solid blue; width: 30%;  float: right; height:50px;}
+    .busImgs {border: 1px solid blue; width: 35%;  float: right; height:50px;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
     .mapBusTable {border: 1px solid green; width:99%; height:50px; margin-top: 5px; margin-bottom: 5px;}
     .busNumGps {border: 1px solid red; width: 60%; height:50px; float: left;}
-    .crowdedImg {max-height: 45px; width: auto; border: 1px solid black;}
+    .crowdedImg {max-height: 30px; width: auto;margin: auto;}
+    .busimg {width:38px; max-height: 45px;  margin-left : 10px; margin-right: 5px;  border: 1px solid black; float: left;}
+    .busNum {font-weight:bold;}
 </style>
 ${bSIResult}
