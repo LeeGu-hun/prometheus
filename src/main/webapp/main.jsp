@@ -72,6 +72,24 @@
 #right{float: left; width: 79.5%; height: 800px; border-left: 2px solid black; }
 #map{width: 100%; height: 800px; }
 
+#logo {
+	margin : 0;
+	line-height: 50px;
+	vertical-align: middle;
+}
+
+#logo p {
+	
+	font-size : 32px;
+	text-shadow: 2px 2px 2px black;
+}
+img {
+	float: left;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 #road{
   width: 99.7%;
   height: 80px;
@@ -281,10 +299,14 @@
 
 
 }
+
 </style>
 <body>
 	<div id="main">
-		<h1>메인페이지</h1>
+		<div id=logo>
+				<img alt="로고" src="${pageContext.request.contextPath}/images/p.png">
+				<p>Team Prometheus<p>
+			</div>
 		<div id="left">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>
