@@ -64,28 +64,240 @@
 			}
 		});
 	}
-	
-	
 </script>
 </head>
+<style>
+#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
+#left{background-color:white; float: left; width: 20%; height: 800px; text-align: left;}
+#right{float: left; width: 79.5%; height: 800px; border-left: 2px solid black; }
+#map{width: 100%; height: 800px; }
+
+#road{
+  width: 99.7%;
+  height: 80px;
+  background-color:gray;
+  margin:0;
+  clear:both;
+  border-radius:2px;
+}
+
+.bus {
+    display: inline-block;
+    width: 90px;
+    height: 45px;
+    clear:both;
+    margin:20px 0px 0px 10px;
+ 	background-color:red;
+    border-radius:17px 10px 2px 2px;  
+    background: red;
+    position :relative;
+  animation: mymove 7s infinite normal ease-in-out;
+  -webkit-animation: mymove 7s infinite normal ease-in-out;
+}
+
+@keyframes mymove {
+    0% { left: -300px;}
+    50% {left: 600px;}
+    100% {left: 1400px;}
+ }
+
+@-webkit-keyframes mymove {
+    0% { left: -300px;}
+    50% {left: 550px;}
+    100% {left: 1400px;}
+ }
+
+#whell1{
+  position:absolute;
+  display: inline-block;
+  width:14px;
+  height:14px;
+  background-color:black;
+  border-radius:80px;
+  margin:37px 65px;
+  background-position: center center;
+  }
+
+
+#whell2{
+  position:absolute;
+  display: inline-block;
+  width:14px;
+  height:14px;
+  background-color:black;
+  border-radius:80px;
+  margin:37px 10px;
+  background-position: center center;
+  }
+
+#whell3{
+  position:absolute;
+  display: inline-block;
+  width:8px;
+  height:8px;
+  background-color:transparent;
+  border:1.5px dotted white;
+  border-radius:80px;
+  margin:39px 67.1px;
+  background-position: center center;
+  }
+
+
+#whell4{
+  position:absolute;
+  display: inline-block;
+  width:8px;
+  height:8px;
+  background-color:transparent;
+  border:1.5px dotted white;
+  border-radius:80px;
+  margin:39px 11.9px;
+  background-position: center center;
+  }
+
+
+#win1{
+  position:absolute;
+  display: inline-block;
+  width:12px;
+  height:12px;
+  background-color:white;
+  border-radius:4px 0 0 0;
+  margin:5px 20px 0px 8px;
+  background-position: center center;
+  }
+#win2{
+  position:absolute;
+  display: inline-block;
+  width:18px;
+  height:12px;
+  background-color:white;
+  border-radius:3px 3px 0px 0px; 
+  margin:5px 33px 0px 24px;
+  background-position: center center;
+  }
+
+#win3{
+  position:absolute;
+  display: inline-block;
+  width:18px;
+  height:12px;
+  background-color:white;
+  border-radius:3px 3px 0px 0px; 
+  margin:5px 54px 0 48px;
+  background-position: center center;
+  }
+
+#win4{
+  position:absolute;
+  display: inline-block;
+  width:12px;
+  height:12px;
+  background-color:white;
+  border-radius:0 4px 0 0;
+  margin:5px 54px 0 72px;
+  background-position: center center;
+  }
+
+#line{
+    position:relative;
+    width: 1200px;
+     top:40px;
+    height: 1px;
+    clear:both;
+    margin-left: auto;
+    margin-right:auto;
+ 	border:1px dashed white;
+}
+
+#fuel{
+  position:absolute;
+  display: inline-block;
+  width:5px;
+  height:1.5px;
+  background-color:#1D1F20;
+  border-radius:0px;
+  margin:42px -5px;
+  background-position: center center;
+  transform:rotate(-18deg);  
+}
+
+#light{
+  z-index:1;
+  position:absolute;
+  display: inline-block;
+  width:4px;
+  height:7.8px;
+  background-color:black;
+  border-radius:80px;
+  margin:27px 90px;
+  border-radius: 0 90px 90px 0;
+  background:#f93100;
+ 
+}
+
+#up1{
+  position:absolute;
+  display: inline-block;
+  width:50px;
+  height:2px;
+  background-color:white;
+  border-radius:4px 4px 0 0;
+  margin:-5px 0px 0px 19px;
+  background-position: center center;
+  }
+
+#up2{
+  position:absolute;
+  display: inline-block;
+  width:2px;
+  height:5px;
+  background-color:white;
+  margin:-5px 0px 0px 26px;
+  background-position: center center;
+  }
+
+#up3{
+  position:absolute;
+  display: inline-block;
+  width:2px;
+  height:5px;
+  background-color:white;
+  margin:-5px 0px 0px 60px;
+  background-position: center center;
+  }
+
+#foggy{
+  width:4px;
+  height:7.8px;
+  border-right:200px solid #f7f771;
+  border-top:20px solid transparent;
+  border-left:20px solid transparent;
+  border-bottom:20px solid transparent;
+  border-radius:100px;
+  margin:90px 60px;
+  position:absolute;
+  margin:7px 68px;
+
+
+}
+</style>
 <body>
 	<div id="main">
-		
 		<h1>메인페이지</h1>
-		<div id="left"
-			style="background-color: yellow; float: left; width: 20%; height: 800px; text-align: left;">
+		<div id="left">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>
 			</div>
-			<div id="search" style="background-color: green">
+			<div id="search">
 				<%@include file="/search/search_view.jsp"%>
 			</div>
-			<div id="result" style="background-color: beige">
+			<div id="result">
 				<%@include file="/search/bus_search_result.jsp"%>
 			</div>
 		</div>
-		<div id="right" style="float: left; width: 80%; height: 800px;">
-			<div id="map" style="width: 100%; height: 800px;"></div>
+		<div id="right" class="inline-svg">
+			<div id="map"></div>
 			<script type="text/javascript"
 				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66a85d4816bb221219a1d74fd28e15d3"></script>
 			<script>
@@ -204,6 +416,26 @@
 		
 	</script>
 		</div>
+		<div id = 'road'>
+      <div id = 'line'></div>
+        <div id = 'tree'></div>   
+        <div class = 'bus'>
+          <div id = 'up1'></div>
+          <div id = 'up2'></div>
+          <div id = 'up3'></div>
+          <div id = 'win1'></div>
+          <div id = 'win2'></div>
+          <div id = 'win3'></div>
+          <div id = 'win4'></div>
+          <div id = 'whell1'></div>
+          <div id = 'whell2'></div>
+          <div id = 'whell3'></div>
+          <div id = 'whell4'></div>
+          <div id = 'fuel'></div>
+          <div id ='light'></div>
+          <div id ='foggy'></div>
+    </div>
+  </div>
 	</div>
 </body>
 </html>

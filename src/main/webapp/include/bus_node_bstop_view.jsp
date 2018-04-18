@@ -11,8 +11,8 @@
     .info .close:hover {cursor: pointer;}
     .info .body {position: relative;overflow: hidden;}
     .info .desc {width:362px; height: 250px; overflow: auto;}
-    .desc .ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .desc .ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; font-weight: bold;}
+    .desc .jibun {font-size: 12px; color: #444;margin-top: -2px; font-weight: normal;}
     .busImgs {border: 1px solid blue; width: 35%;  float: right; height:50px;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}

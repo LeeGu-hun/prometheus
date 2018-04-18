@@ -15,10 +15,10 @@ public class BusInfoBean {
 	String nodeId;		// 노드ID
 	String nodeKn;		// 노드종류 (0:교차로 3: 정류소)
 	String rpoint;		// 회차지 구분 (0:일반 1:회차지)
-	String crowded;		// 혼잡도		
+	int crowded;		// 혼잡도		
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String carNo, String direction,
 			String gpsTm, String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn,
-			String rpoint, String crowded) {
+			String rpoint, int crowded) {
 
 		this.arsNo = arsNo;
 		this.avgtm = avgtm;
@@ -39,7 +39,7 @@ public class BusInfoBean {
 
 	public BusInfoBean(String avgtm, String bstopIdx, String bstopnm, String carNo, String direction, String gpsTm,
 			String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn, String rpoint,
-			String crowded) {
+			int crowded) {
 		super();
 		this.avgtm = avgtm;
 		this.bstopIdx = bstopIdx;
@@ -202,11 +202,11 @@ public class BusInfoBean {
 		this.rpoint = rpoint;
 	}
 
-	public String getCrowded() {
+	public int getCrowded() {
 		return crowded;
 	}
 
-	public void setCrowded(String crowded) {
+	public void setCrowded(int crowded) {
 		this.crowded = crowded;
 	}
 

@@ -73,15 +73,15 @@ public class LeftMenuController {
 	public String searchNum(@RequestParam(value = "busNum", defaultValue = "false") String busnum, Model model,
 			HttpServletRequest request) throws Exception {
 		ApiBusNum bNum = new ApiBusNum();
-		List<BusBean> BusNumInfo = new ArrayList();
-		BusNumInfo = bNum.getBusNum(busnum);
+		List<BusBean> busNumInfo = new ArrayList();
+		busNumInfo = bNum.getBusNum(busnum);
 		// System.out.println(BusNumInfo.get(0).getLineId());
 
 		// ApiBusLine bLine = new ApiBusLine();
 		// List<BusInfoBean> BusLine = new ArrayList();
 		// BusLine = bLine.getBusLine(BusNumInfo.get(0).getLineId());
 
-		model.addAttribute("BusNumInfo", BusNumInfo);
+		model.addAttribute("BusNumInfo", busNumInfo);
 
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
@@ -99,16 +99,16 @@ public class LeftMenuController {
 		System.out.println(bId);
 		ModelAndView mav = new ModelAndView();
 		ApiBusInfo bInfo = new ApiBusInfo();
-		List<BusBean> BusInfo = new ArrayList();
-		BusInfo = bInfo.getBusNum(bId);
+		List<BusBean> busInfo = new ArrayList();
+		busInfo = bInfo.getBusNum(bId);
 
 		ApiBusLine bLine = new ApiBusLine();
-		List<BusInfoBean> BusLine = new ArrayList();
+		List<BusInfoBean> busLine = new ArrayList();
 
-		BusLine = bLine.getBusLine(bId);
-
-		mav.addObject("BusLine", BusLine);
-		mav.addObject("BusInfo", BusInfo);
+		busLine = bLine.getBusLine(bId);
+	
+		mav.addObject("BusLine", busLine);
+		mav.addObject("BusInfo", busInfo);
 		mav.setViewName("include/bus_node_search_view");
 
 		String requestURI = request.getRequestURI();
@@ -124,23 +124,13 @@ public class LeftMenuController {
 	public ModelAndView searchBusNodeGps(HttpServletRequest request) throws Exception {
 		String bNodeId = request.getParameter("busNodeId");
 		ApiBusStopInfo stopNodeInfo = new ApiBusStopInfo();
-		// System.out.println(bNodeId);
-		List<BusStopInfoBean> BusStopInfo = stopNodeInfo.busStopInfo(bNodeId);
-		String x = BusStopInfo.get(0).getGpsX();
-		String y = BusStopInfo.get(0).getGpsY();
-		String node = BusStopInfo.get(0).getNodeNm();
-		// System.out.println(x);
-		// System.out.println(y);
-		// System.out.println(node);
-
+		List<BusStopInfoBean> busStopInfo = stopNodeInfo.busStopInfo(bNodeId);
+		String gpsX = busStopInfo.get(0).getGpsX();
+		String gpsY = busStopInfo.get(0).getGpsY();
+		String name = busStopInfo.get(0).getNodeNm();
 		ModelAndView mav = new ModelAndView();
-		// if(x.equals(null)) {
-		// mav.addObject("failedResult",failedResult);
-		// mav.setViewName("include/bus_node_map_view");
-		//
-		// return mav;
-		// }
-		String buf = "<script>panTo('" + x + "','" + y + "','" + node + "');</script>";
+	
+		String buf = "<script>panTo('" + gpsX + "','" + gpsY + "','" + name + "');</script>";
 		mav.addObject("pantoResult", buf);
 		mav.setViewName("include/bus_node_map_view");
 
@@ -186,11 +176,11 @@ public class LeftMenuController {
 				conOverLay.append("<div class=\"busImgs\" align= left>");
 				conOverLay.append("<div class=\"busimg\" align= center>");
 				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
-				if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) <= 20) {
+				if (busStopInfo.get(i).getCrowded1() <= 20) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) < 35) {
+				} else if (busStopInfo.get(i).getCrowded1() < 35) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
 							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
@@ -213,11 +203,11 @@ public class LeftMenuController {
 				conOverLay.append("<div class=\"busImgs\" align= left>");
 				conOverLay.append("<div class=\"busimg\" align= center>");
 				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
-				if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) <= 20) {
+				if (busStopInfo.get(i).getCrowded1() <= 20) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded1()) < 35) {
+				} else if (busStopInfo.get(i).getCrowded1() < 35) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
 							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
@@ -229,11 +219,11 @@ public class LeftMenuController {
 				conOverLay.append("</div>");// firstBus
 				conOverLay.append("<div class=\"busimg\" align= center>");
 				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo2() + "]</p>");
-				if (Integer.parseInt(busStopInfo.get(i).getCrowded2()) <= 20) {
+				if (busStopInfo.get(i).getCrowded2() <= 20) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-				} else if (Integer.parseInt(busStopInfo.get(i).getCrowded2()) < 35) {
+				} else if (busStopInfo.get(i).getCrowded2() < 35) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
 							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");

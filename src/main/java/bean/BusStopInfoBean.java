@@ -19,15 +19,15 @@ public class BusStopInfoBean {
 	String station2;	// 두번째 차량 남은 도착시간
 	String lowplate1;	// 첫번째 차량 저상버스구분 (0:일반 1:저상)
 	String lowplate2;	// 두번째 차량 저상버스구분 (0:일반 1:저상)
-	String crowded1;	// 첫번째 차량 혼잡도
-	String crowded2;	//두번째 차량 혼잡도
+	int crowded1;	// 첫번째 차량 혼잡도
+	int crowded2;	//두번째 차량 혼잡도
 
 	public BusStopInfoBean() {
 	}
 
 	public BusStopInfoBean(String arsNo, String bstopId, String bstopIdx, String bustype, String carNo1, String carNo2,
 			String gpsX, String gpsY, String lineNo, String lineid, String lowplate1, String lowplate2, String min1,
-			String min2, String nodeNm, String station1, String station2, String crowded1, String crowded2) {
+			String min2, String nodeNm, String station1, String station2, int crowded1, int crowded2) {
 		super();
 		this.arsNo = arsNo;
 		this.bstopId = bstopId;
@@ -52,7 +52,7 @@ public class BusStopInfoBean {
 
 	public BusStopInfoBean(String bstopId, String bstopIdx, String bustype, String carNo1, String carNo2, String gpsX,
 			String gpsY, String lineNo, String lineid, String lowplate1, String lowplate2, String min1, String min2,
-			String nodeNm, String station1, String station2, String crowded1, String crowded2) {
+			String nodeNm, String station1, String station2, int crowded1, int crowded2) {
 		super();
 		this.bstopId = bstopId;
 		this.bstopIdx = bstopIdx;
@@ -76,7 +76,7 @@ public class BusStopInfoBean {
 
 	public BusStopInfoBean(String arsNo, String bstopId, String bstopIdx, String bustype, String carNo1, String gpsX,
 			String gpsY, String lineNo, String lineid, String lowplate1, String min1, String nodeNm, String station1,
-			String crowded1) {
+			int crowded1) {
 		super();
 		this.arsNo = arsNo;
 		this.bstopId = bstopId;
@@ -96,7 +96,7 @@ public class BusStopInfoBean {
 
 	public BusStopInfoBean(String bstopId, String bstopIdx, String bustype, String carNo1, String gpsX, String gpsY,
 			String lineNo, String lineid, String lowplate1, String min1, String nodeNm, String station1,
-			String crowded1) {
+			int crowded1) {
 		super();
 		this.bstopId = bstopId;
 		this.bstopIdx = bstopIdx;
@@ -270,19 +270,19 @@ public class BusStopInfoBean {
 		this.station2 = station2;
 	}
 
-	public String getCrowded1() {
+	public int getCrowded1() {
 		return crowded1;
 	}
 
-	public String getCrowded2() {
+	public int getCrowded2() {
 		return crowded2;
 	}
 
-	public void setCrowded1(String crowded1) {
+	public void setCrowded1(int crowded1) {
 		this.crowded1 = crowded1;
 	}
 
-	public void setCrowded2(String crowded2) {
+	public void setCrowded2(int crowded2) {
 		this.crowded2 = crowded2;
 	}
 
