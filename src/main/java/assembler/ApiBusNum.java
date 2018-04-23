@@ -37,11 +37,9 @@ public class ApiBusNum {
 		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
-			// System.out.println(response.toString());
 			response.append(inputLine);
 		}
 		in.close();
-		// System.out.println(response.toString());
 		// 파싱 끝
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = dbFactory.newDocumentBuilder();
@@ -55,16 +53,41 @@ public class ApiBusNum {
 
 		Element item = (Element) doc.getElementsByTagName("item").item(0);
 		int itemsize = doc.getElementsByTagName("item").getLength();
-		
-		for(int i=0 ;i<itemsize; i++) {	
-			
-		TEST.add(new BusBean(
-				((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("buslinenum").item(0).getChildNodes().item(0).getNodeValue(),
-				((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineId").item(0).getChildNodes().item(0).getNodeValue()
-	
-				));
+
+		for (int i = 0; i < itemsize; i++) {
+			if (((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("buslinenum").item(0)
+					.getChildNodes().item(0).getNodeValue().equals("73(아침)")) {
+				TEST.add(new BusBean(
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("buslinenum").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i))
+								.getElementsByTagName("endpoint").item(0).getChildNodes().item(0).getNodeValue(),
+						"10:00",
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("firsttime").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						"5200073000",
+						((Element) doc.getElementsByTagName("item").item(i))
+								.getElementsByTagName("startpoint").item(0).getChildNodes().item(0).getNodeValue()));
+			} else {
+				TEST.add(new BusBean(
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("buslinenum").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("endpoint").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("endtime").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("firsttime").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineId").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("startpoint").item(0)
+								.getChildNodes().item(0).getNodeValue()));
 			}
-		
+		}
 		return TEST;
 	}
 

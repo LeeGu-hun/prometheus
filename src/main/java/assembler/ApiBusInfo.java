@@ -37,11 +37,9 @@ public class ApiBusInfo {
 		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
-			// System.out.println(response.toString());
 			response.append(inputLine);
 		}
 		in.close();
-		// System.out.println(response.toString());
 		// 파싱 끝
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = dbFactory.newDocumentBuilder();

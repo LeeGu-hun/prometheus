@@ -9,7 +9,6 @@
 	width: 50%;
 	margin: 0;
 	padding: 0; 
-	float : left;
 	display: block;
 	float: left;
 }
@@ -18,7 +17,6 @@
 	width: 50%;
 	margin: 0;
 	padding : 0;
-	float : left;
 	display: block;
 	float: left;
 }
@@ -56,24 +54,27 @@
 	padding: 0 !important;
 }
 
-.contactype:hover {
+.contactype:hover,.active {
 	background-color: #5494fe;
 }
 </style>
-
-
 <body>
-	<div class="slide" id="slide5" data-slide="5"
-		data-stellar-background-ratio="0.5">
+	<div class="slide" id="slide5" data-slide="5" data-stellar-background-ratio="0.5">
 		<div class="container clearfix">
-			<div class="content grid_1 contactype" id="contact-mapClick"
-				onclick="location.href='./busNumSearch'">
-				<p>번호검색</p>
-			</div>
-			<div class="content grid_2 contactype" id="contact-carClick"
-				onclick="location.href='./busStopSearch'">
-				<p>정류소 검색</p>
-			</div>
+			<c:choose>
+				<c:when test="${cmd == '/busNumSearch'}">
+					<div class="content grid_1 contactype active" id="contact-mapClick"	onclick="location.href='./busNumSearch'"><p>번호검색</p></div>
+					<div class="content grid_2 contactype" id="contact-carClick" onclick="location.href='./busStopSearch'"><p>정류소 검색</p></div>
+				</c:when>
+				<c:when test="${cmd == '/busStopSearch' or cmd == '/searchbStop' }">
+					<div class="content grid_1 contactype " id="contact-mapClick"	onclick="location.href='./busNumSearch'"><p>번호검색</p></div>
+					<div class="content grid_2 contactype active" id="contact-carClick" onclick="location.href='./busStopSearch'"><p>정류소 검색</p></div>
+				</c:when>
+				<c:otherwise>
+					<div class="content grid_1 contactype active" id="contact-mapClick"	onclick="location.href='./busNumSearch'"><p>번호검색</p></div>
+					<div class="content grid_2 contactype" id="contact-carClick" onclick="location.href='./busStopSearch'"><p>정류소 검색</p></div>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 </body>

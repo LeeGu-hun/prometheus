@@ -19,12 +19,11 @@ public class BusStopInfoBean {
 	String station2;	// 두번째 차량 남은 도착시간
 	String lowplate1;	// 첫번째 차량 저상버스구분 (0:일반 1:저상)
 	String lowplate2;	// 두번째 차량 저상버스구분 (0:일반 1:저상)
-	int crowded1;	// 첫번째 차량 혼잡도
-	int crowded2;	//두번째 차량 혼잡도
+	int crowded1;		// 첫번째 차량 혼잡도
+	int crowded2;		//두번째 차량 혼잡도
 
 	public BusStopInfoBean() {
 	}
-
 	public BusStopInfoBean(String arsNo, String bstopId, String bstopIdx, String bustype, String carNo1, String carNo2,
 			String gpsX, String gpsY, String lineNo, String lineid, String lowplate1, String lowplate2, String min1,
 			String min2, String nodeNm, String station1, String station2, int crowded1, int crowded2) {

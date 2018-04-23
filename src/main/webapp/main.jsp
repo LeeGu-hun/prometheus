@@ -23,12 +23,16 @@
 	type="text/javascript"></script>
 
 <script>
-	function searchInfo(buslineId) {
-
+	function searchInfo(buslineId, infoSize) {
+		var allData = {
+				"buslineId" : buslineId,
+				"infoSize" : infoSize
+			};
+		
 		$.ajax({
 			url : "/prometheus/searchBInfo",
 			method : "GET",
-			data : "buslineId=" + buslineId,/* + "&linenum=" + linenum */
+			data : allData,/* + "&linenum=" + linenum */
 			success : function(response) {
 				$('#searchNumResult').html(response);
 			}
@@ -64,249 +68,250 @@
 			}
 		});
 	}
+	
 </script>
 </head>
 <style>
-#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
-#left{background-color:white; float: left; width: 20%; height: 800px; text-align: left;}
-#right{float: left; width: 79.5%; height: 800px; border-left: 2px solid black; }
-#map{width: 100%; height: 800px; }
+	body{margin: 0; padding: 0;}
 
-#logo {
-	margin : 0;
-	line-height: 50px;
-	vertical-align: middle;
-}
-
-#logo p {
+	#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
+	#left{background-color:white; float: left; width: 20%; height: 800px; text-align: left;}
+	#right{float: left; width: 79.5%; height: 800px; border-left: 2px solid black; }
+	#map{width: 100%; height: 800px; }
+	#road{
+	  width: 99.7%;
+	  height: 80px;
+	  background-color:gray;
+	  margin:0;
+	  clear:both;
+	  border-radius:2px;
+	}
 	
-	font-size : 32px;
-	text-shadow: 2px 2px 2px black;
-}
-img {
-	float: left;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
+	.bus {
+	    display: inline-block;
+	    width: 90px;
+	    height: 45px;
+	    clear:both;
+	    margin:20px 0px 0px 10px;
+	 	border-radius:17px 10px 2px 2px;  
+	    position :relative;
+	  animation: mymove 7s infinite normal ease-in-out;
+	  -webkit-animation: mymove 7s infinite normal ease-in-out;
+	}
+	
+	
+	/* 
+	@-webkit-keyframes mymove {
+	    0%   { left: 300px; background-color:  green;}
+	    25%  { left: 700px; background-color:  green;}
+	    50%  {left: 1100px; background-color: orange;}
+	    100% {left: 1500px; background-color: red;}
+	}
+	
+	@keyframes mymove {
+	    0%   { left: 300px; background-color:  green;}
+	    25%  { left: 700px; background-color:  green;}
+	    50%  {left: 1100px; background-color: orange;}
+	    100% {left: 1500px; background-color: red;}
+	}
+	 */ 
+	
+	@-webkit-keyframes mymove {
+	    0%   { left: -300px;background-color: red;}
+	    50%  {left: 700px; background-color: red;}
+	    100% {left: 1500px;background-color: red;}
+	}
+	
+	@keyframes mymove {
+	    0%   { left: -300px;background-color: red;}
+	    50%  {left: 700px; background-color: red;}
+	    100% {left: 1500px;background-color: red;}
+	}
+	
+	
+	
+	#whell1{
+	  position:absolute;
+	  display: inline-block;
+	  width:14px;
+	  height:14px;
+	  background-color:black;
+	  border-radius:80px;
+	  margin:37px 65px;
+	  background-position: center center;
+	  }
+	
+	
+	#whell2{
+	  position:absolute;
+	  display: inline-block;
+	  width:14px;
+	  height:14px;
+	  background-color:black;
+	  border-radius:80px;
+	  margin:37px 10px;
+	  background-position: center center;
+	  }
+	
+	#whell3{
+	  position:absolute;
+	  display: inline-block;
+	  width:8px;
+	  height:8px;
+	  background-color:transparent;
+	  border:1.5px dotted white;
+	  border-radius:80px;
+	  margin:39px 67.1px;
+	  background-position: center center;
+	  }
+	
+	
+	#whell4{
+	  position:absolute;
+	  display: inline-block;
+	  width:8px;
+	  height:8px;
+	  background-color:transparent;
+	  border:1.5px dotted white;
+	  border-radius:80px;
+	  margin:39px 11.9px;
+	  background-position: center center;
+	  }
+	
+	
+	#win1{
+	  position:absolute;
+	  display: inline-block;
+	  width:12px;
+	  height:12px;
+	  background-color:white;
+	  border-radius:4px 0 0 0;
+	  margin:5px 20px 0px 8px;
+	  background-position: center center;
+	  }
+	#win2{
+	  position:absolute;
+	  display: inline-block;
+	  width:18px;
+	  height:12px;
+	  background-color:white;
+	  border-radius:3px 3px 0px 0px; 
+	  margin:5px 33px 0px 24px;
+	  background-position: center center;
+	  }
+	
+	#win3{
+	  position:absolute;
+	  display: inline-block;
+	  width:18px;
+	  height:12px;
+	  background-color:white;
+	  border-radius:3px 3px 0px 0px; 
+	  margin:5px 54px 0 48px;
+	  background-position: center center;
+	  }
+	
+	#win4{
+	  position:absolute;
+	  display: inline-block;
+	  width:12px;
+	  height:12px;
+	  background-color:white;
+	  border-radius:0 4px 0 0;
+	  margin:5px 54px 0 72px;
+	  background-position: center center;
+	  }
+	
+	#line{
+	    position:relative;
+	    width: 1200px;
+	     top:40px;
+	    height: 1px;
+	    clear:both;
+	    margin-left: auto;
+	    margin-right:auto;
+	 	border:1px dashed white;
+	}
+	
+	#fuel{
+	  position:absolute;
+	  display: inline-block;
+	  width:5px;
+	  height:1.5px;
+	  background-color:#1D1F20;
+	  border-radius:0px;
+	  margin:42px -5px;
+	  background-position: center center;
+	  transform:rotate(-18deg);  
+	}
+	
+	#light{
+	  z-index:1;
+	  position:absolute;
+	  display: inline-block;
+	  width:4px;
+	  height:7.8px;
+	  background-color:black;
+	  border-radius:80px;
+	  margin:27px 90px;
+	  border-radius: 0 90px 90px 0;
+	  background:#f93100;
+	 
+	}
+	
+	#up1{
+	  position:absolute;
+	  display: inline-block;
+	  width:50px;
+	  height:2px;
+	  background-color:white;
+	  border-radius:4px 4px 0 0;
+	  margin:-5px 0px 0px 19px;
+	  background-position: center center;
+	  }
+	
+	#up2{
+		position:absolute;
+		display: inline-block;
+		width:2px;
+		height:5px;
+		background-color:white;
+		margin:-5px 0px 0px 26px;
+		background-position: center center;
+	  }
+	
+	#up3{
+		position:absolute;
+		display: inline-block;
+		width:2px;
+		height:5px;
+		background-color:white;
+		margin:-5px 0px 0px 60px;
+		background-position: center center;
+	}
+	
+	#foggy{
+		width:4px;
+		height:7.8px;
+		border-right:200px solid #f7f771;
+		border-top:20px solid transparent;
+		border-left:20px solid transparent;
+		border-bottom:20px solid transparent;
+		border-radius:100px;
+		margin:90px 60px;
+		position:absolute;
+		margin:7px 68px;
+	  }
 
-#road{
-  width: 99.7%;
-  height: 80px;
-  background-color:gray;
-  margin:0;
-  clear:both;
-  border-radius:2px;
-}
-
-.bus {
-    display: inline-block;
-    width: 90px;
-    height: 45px;
-    clear:both;
-    margin:20px 0px 0px 10px;
- 	background-color:red;
-    border-radius:17px 10px 2px 2px;  
-    background: red;
-    position :relative;
-  animation: mymove 7s infinite normal ease-in-out;
-  -webkit-animation: mymove 7s infinite normal ease-in-out;
-}
-
-@keyframes mymove {
-    0% { left: -300px;}
-    50% {left: 600px;}
-    100% {left: 1400px;}
- }
-
-@-webkit-keyframes mymove {
-    0% { left: -300px;}
-    50% {left: 550px;}
-    100% {left: 1400px;}
- }
-
-#whell1{
-  position:absolute;
-  display: inline-block;
-  width:14px;
-  height:14px;
-  background-color:black;
-  border-radius:80px;
-  margin:37px 65px;
-  background-position: center center;
-  }
-
-
-#whell2{
-  position:absolute;
-  display: inline-block;
-  width:14px;
-  height:14px;
-  background-color:black;
-  border-radius:80px;
-  margin:37px 10px;
-  background-position: center center;
-  }
-
-#whell3{
-  position:absolute;
-  display: inline-block;
-  width:8px;
-  height:8px;
-  background-color:transparent;
-  border:1.5px dotted white;
-  border-radius:80px;
-  margin:39px 67.1px;
-  background-position: center center;
-  }
-
-
-#whell4{
-  position:absolute;
-  display: inline-block;
-  width:8px;
-  height:8px;
-  background-color:transparent;
-  border:1.5px dotted white;
-  border-radius:80px;
-  margin:39px 11.9px;
-  background-position: center center;
-  }
-
-
-#win1{
-  position:absolute;
-  display: inline-block;
-  width:12px;
-  height:12px;
-  background-color:white;
-  border-radius:4px 0 0 0;
-  margin:5px 20px 0px 8px;
-  background-position: center center;
-  }
-#win2{
-  position:absolute;
-  display: inline-block;
-  width:18px;
-  height:12px;
-  background-color:white;
-  border-radius:3px 3px 0px 0px; 
-  margin:5px 33px 0px 24px;
-  background-position: center center;
-  }
-
-#win3{
-  position:absolute;
-  display: inline-block;
-  width:18px;
-  height:12px;
-  background-color:white;
-  border-radius:3px 3px 0px 0px; 
-  margin:5px 54px 0 48px;
-  background-position: center center;
-  }
-
-#win4{
-  position:absolute;
-  display: inline-block;
-  width:12px;
-  height:12px;
-  background-color:white;
-  border-radius:0 4px 0 0;
-  margin:5px 54px 0 72px;
-  background-position: center center;
-  }
-
-#line{
-    position:relative;
-    width: 1200px;
-     top:40px;
-    height: 1px;
-    clear:both;
-    margin-left: auto;
-    margin-right:auto;
- 	border:1px dashed white;
-}
-
-#fuel{
-  position:absolute;
-  display: inline-block;
-  width:5px;
-  height:1.5px;
-  background-color:#1D1F20;
-  border-radius:0px;
-  margin:42px -5px;
-  background-position: center center;
-  transform:rotate(-18deg);  
-}
-
-#light{
-  z-index:1;
-  position:absolute;
-  display: inline-block;
-  width:4px;
-  height:7.8px;
-  background-color:black;
-  border-radius:80px;
-  margin:27px 90px;
-  border-radius: 0 90px 90px 0;
-  background:#f93100;
- 
-}
-
-#up1{
-  position:absolute;
-  display: inline-block;
-  width:50px;
-  height:2px;
-  background-color:white;
-  border-radius:4px 4px 0 0;
-  margin:-5px 0px 0px 19px;
-  background-position: center center;
-  }
-
-#up2{
-  position:absolute;
-  display: inline-block;
-  width:2px;
-  height:5px;
-  background-color:white;
-  margin:-5px 0px 0px 26px;
-  background-position: center center;
-  }
-
-#up3{
-  position:absolute;
-  display: inline-block;
-  width:2px;
-  height:5px;
-  background-color:white;
-  margin:-5px 0px 0px 60px;
-  background-position: center center;
-  }
-
-#foggy{
-  width:4px;
-  height:7.8px;
-  border-right:200px solid #f7f771;
-  border-top:20px solid transparent;
-  border-left:20px solid transparent;
-  border-bottom:20px solid transparent;
-  border-radius:100px;
-  margin:90px 60px;
-  position:absolute;
-  margin:7px 68px;
-
-
-}
-
+	::-webkit-scrollbar-track{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); border-radius: 10px; background-color: #F5F5F5;}
+	::-webkit-scrollbar{width: 12px; background-color: #F5F5F5;}
+	::-webkit-scrollbar-thumb{border-radius: 10px; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #5283f4;}
+	
+	
 </style>
 <body>
 	<div id="main">
-		<div id=logo>
-				<img alt="로고" src="${pageContext.request.contextPath}/images/p.png">
-				<p>Team Prometheus<p>
-			</div>
+		<h1>Team Prometheus</h1>
 		<div id="left">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>

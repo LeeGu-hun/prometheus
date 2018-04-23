@@ -36,11 +36,9 @@ public class ApiBusLine {
 		StringBuffer response = new StringBuffer();
 
 		while ((inputLine = in.readLine()) != null) {
-
 			response.append(inputLine);
 		}
 		in.close();
-		// System.out.println(response.toString());
 		// 파싱 끝
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = dbFactory.newDocumentBuilder();
@@ -60,9 +58,9 @@ public class ApiBusLine {
 
 		for (int i = 0; i < itemsize; i++) {
 			if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 14) {
-
+				// 불필요한 if문이 지만 일단 넘김 
 				if (((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo").item(0)
-						.getChildNodes().item(0).getNodeValue().equals("70자4816")) {
+						.getChildNodes().item(0).getNodeValue().equals("71자2813")) {
 					int crowded = (int) (Math.random() * 45);
 					TEST.add(new BusInfoBean(
 							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
@@ -93,7 +91,7 @@ public class ApiBusLine {
 									.getChildNodes().item(0).getNodeValue(),
 							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("rpoint").item(0)
 									.getChildNodes().item(0).getNodeValue(),
-							crowded));
+							1111));
 				} else {
 					int crowded = (int) (Math.random() * 45);
 					TEST.add(new BusInfoBean(

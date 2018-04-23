@@ -25,7 +25,7 @@ public class ApiBusStopInfo {
 		ArrayList<BusStopInfoBean> result = new ArrayList();
 
 		String URLSTRING = URLEncoder.encode(station, "UTF-8");
-
+		System.out.println(URLSTRING);
 		String url = "http://61.43.246.153/openapi-data/service/busanBIMS2/stopArr?serviceKey=qtoPVWzzOaHE2p0loY9qiyWjAqQ%2FHPfkE3dZmm41%2FLOt9EBf3wB613JruaP8d27Jm0cJlwJE851k7v5UTG4hQQ%3D%3D&bstopid="
 				+ URLSTRING + " ";
 
@@ -60,6 +60,7 @@ public class ApiBusStopInfo {
 
 		for (int i = 0; i < itemsize; i++) {
 			if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 17) {
+				// 혼잡도 random
 				int crowded1 = (int)(Math.random() * 45);
 				int crowded2 = (int)(Math.random() * 45);
 				result.add(new BusStopInfoBean(
