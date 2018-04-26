@@ -22,4 +22,5 @@
     .busimg {width:38px; max-height: 45px;  margin-left : 10px; margin-right: 5px; float: left;}
     .busNum {font-weight:bold;}
 </style>
+
 ${pantoResult}

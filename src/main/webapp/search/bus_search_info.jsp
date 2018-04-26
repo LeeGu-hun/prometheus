@@ -20,6 +20,7 @@
 	    margin-right: 5px;
 	    background-position: 0 -795px;
 	}
+	
 	.bustype2 {
 	    float: left;
 	    background: no-repeat 0 -750px url(http://t1.daumcdn.net/localimg/localimages/07/2013/map/ico_bus_2.png);

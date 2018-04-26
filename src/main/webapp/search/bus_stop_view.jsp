@@ -55,7 +55,6 @@
 		-webkit-border-radius:12px;
 		border-radius: 40px 0 0 40px;
 	}
-	
 	.next{	
 		font-size:15px;
 		-moz-border-radius:12px;

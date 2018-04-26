@@ -10,6 +10,7 @@
 #header{ margin-top: 0; padding: 0; }
 #busNum{width: 70%; height: 30px; margin: 5px 10px 0 5px; padding: 0; border-right:0px; border-top:0px; boder-left:0px; border-bottom: 2px solid #5494fe; }
 @import url(https://fonts.googleapis.com/css?family=BenchNine:700);
+
 .snip1535 {
   background-color: #5494fe;
   border: none;

@@ -189,6 +189,7 @@
 	  margin:5px 20px 0px 8px;
 	  background-position: center center;
 	  }
+	  
 	#win2{
 	  position:absolute;
 	  display: inline-block;

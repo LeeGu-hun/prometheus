@@ -8,7 +8,6 @@
 
 </head>
 <body>
-
 	<c:choose>
 		<c:when test="${cmd == '/searchbnum'}">
 			<%@include file="/search/bus_search_info.jsp"%>

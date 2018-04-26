@@ -14,6 +14,7 @@
 	#linTable {width: 100%;	height: 380px; overflow: auto; float: right; margin-top: 10px; }
 	#linTable1 {width: 100%;	height: 467px; overflow: auto; float: right; margin-top: 10px; }
 	#linTable2 {width: 100%;	height: 553px; overflow: auto; float: right; margin-top: 10px; }
+	
 	.crowdImg {max-height: 30px; width: auto;	margin-left: 15px;}
 	#nodeIdTd{width: 200px;}
 	

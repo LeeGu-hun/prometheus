@@ -12,7 +12,6 @@
 	display: block;
 	float: left;
 }
-
 .grid_2 {
 	width: 50%;
 	margin: 0;
