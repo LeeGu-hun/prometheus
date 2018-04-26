@@ -32,7 +32,7 @@
 	#busStopNameTable{width: 95%; margin:5px; padding: 5px 0 5px 0; }
 	#busStopNameTable tr{height: 27px;}
 	.busStopNames{border: 1px solid black; height: 20px;}
-	#pageDiv{width: 95%; margin:20px 5px 5px 5px; padding: 5px 0 5px 0; }
+	#pageDiv{width: 95%; margin:8px 5px 5px 5px; padding: 5px 0 5px 0; }
 	
 	.pageTable{margin: 0; padding: 0;}
 	.pageBtn {
@@ -73,6 +73,7 @@
 		color: white;
 		border:2px solid black;
 	}
+	
 </style>
 <body>
 	<div id="bStopbody">
@@ -136,7 +137,7 @@
 					</td>
 				</c:forEach>
 				<c:choose>
-					<c:when test="${map.endPage < map.totalPage}">
+					<c:when test="${map.endPage < map.totalPage || map.currentPage < map.endPage }">
 						<td>
 							<form class="searchform cf" action="searchbStop" method="get">
 								<input type="hidden" name="busStop"id="busStop" value="${map.station}">
@@ -151,6 +152,7 @@
 				</c:choose>
 			</tr>
 		</table>
+		
 	</div>
 	<div id="searchbStopResult"></div>
 </body>

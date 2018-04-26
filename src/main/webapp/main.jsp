@@ -75,9 +75,9 @@
 	body{margin: 0; padding: 0;}
 
 	#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
-	#left{background-color:white; float: left; width: 20%; height: 800px; text-align: left;}
-	#right{float: left; width: 79.5%; height: 800px; border-left: 2px solid black; }
-	#map{width: 100%; height: 800px; }
+	#left{background-color:white; float: left; width: 20%; height: 750px; text-align: left;}
+	#right{float: left; width: 79.7%; height: 750px; border-left: 2px solid black; }
+	#map{width: 100%; height: 750px; }
 	#road{
 	  width: 99.7%;
 	  height: 80px;
@@ -326,8 +326,10 @@
 		<div id="right" class="inline-svg">
 			<div id="map"></div>
 			<script type="text/javascript"
-				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66a85d4816bb221219a1d74fd28e15d3"></script>
-			<script>
+				src="//dapi.kakao.com/v2/maps/sdk.js?appkey=66a85d4816bb221219a1d74fd28e15d3">
+			</script>
+		</div>	
+<script>
 		// 지도를 표시할 div 
 		
 		if(${cmd == '/searchbStop'}){
@@ -346,10 +348,22 @@
 				// 지도의 확대 레벨
 				level : 3 
 			};
+			
 		}
+		
 		// 지도 생성
 		var map = new daum.maps.Map(mapContainer, mapOption); 
 		var markers = [];
+
+		var mapTypeControl = new daum.maps.MapTypeControl();
+		// 지도에 컨트롤을 추가
+		// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의 TOPRIGHT= 오른쪽 위
+		map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
 		
 		function overlay(conOverLay, GpsX,GpsY,bname){
 			 for (var i = 0; i < markers.length; i++) {
@@ -441,28 +455,27 @@
 			});
 		}
 		
-	</script>
-		</div>
-		<div id = 'road'>
-      <div id = 'line'></div>
-        <div id = 'tree'></div>   
-        <div class = 'bus'>
-          <div id = 'up1'></div>
-          <div id = 'up2'></div>
-          <div id = 'up3'></div>
-          <div id = 'win1'></div>
-          <div id = 'win2'></div>
-          <div id = 'win3'></div>
-          <div id = 'win4'></div>
-          <div id = 'whell1'></div>
-          <div id = 'whell2'></div>
-          <div id = 'whell3'></div>
-          <div id = 'whell4'></div>
-          <div id = 'fuel'></div>
-          <div id ='light'></div>
-          <div id ='foggy'></div>
-    </div>
+</script>
+	<div id = 'road'>
+     <div id = 'line'></div>
+       <div id = 'tree'></div>   
+       <div class = 'bus'>
+         <div id = 'up1'></div>
+         <div id = 'up2'></div>
+         <div id = 'up3'></div>
+         <div id = 'win1'></div>
+         <div id = 'win2'></div>
+         <div id = 'win3'></div>
+         <div id = 'win4'></div>
+         <div id = 'whell1'></div>
+         <div id = 'whell2'></div>
+         <div id = 'whell3'></div>
+         <div id = 'whell4'></div>
+         <div id = 'fuel'></div>
+         <div id ='light'></div>
+         <div id ='foggy'></div>
+   	 </div>
   </div>
-	</div>
+</div>
 </body>
 </html>

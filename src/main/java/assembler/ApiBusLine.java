@@ -91,7 +91,7 @@ public class ApiBusLine {
 									.getChildNodes().item(0).getNodeValue(),
 							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("rpoint").item(0)
 									.getChildNodes().item(0).getNodeValue(),
-							1111));
+							crowded));
 				} else {
 					int crowded = (int) (Math.random() * 45);
 					TEST.add(new BusInfoBean(

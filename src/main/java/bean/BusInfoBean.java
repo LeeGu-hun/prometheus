@@ -17,6 +17,15 @@ public class BusInfoBean {
 	String rpoint;		// 회차지 구분 (0:일반 1:회차지)
 	int crowded;		// 혼잡도		
 	
+	
+	
+	
+	public BusInfoBean(String carNo, int crowded) {
+		super();
+		this.carNo = carNo;
+		this.crowded = crowded;
+	}
+
 	public BusInfoBean(String arsNo, String avgtm, String bstopIdx, String bstopnm, String carNo, String direction,
 			String gpsTm, String lat, String lineNo, String lon, String lowplate, String nodeId, String nodeKn,
 			String rpoint, int crowded) {

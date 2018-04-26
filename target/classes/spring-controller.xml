@@ -9,5 +9,8 @@
 
 	<bean class="controller.MainController" />
 	<bean class="controller.LeftMenuController" />
+	<bean class="controller.BusNumController" >
+		<property name="busService" ref="busService"/>
+	</bean>
 
 </beans>

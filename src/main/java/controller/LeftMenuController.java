@@ -100,12 +100,12 @@ public class LeftMenuController {
 		List<BusBean> busNumInfo = new ArrayList();
 		busNumInfo = bNum.getBusNum(busnum);
 		Map<String, Object> map = new HashMap<String, Object>();
-		int infoSize =  busNumInfo.size();
-		System.out.println("infoSize"+ infoSize);
+		int infoSize = busNumInfo.size();
+		System.out.println("infoSize" + infoSize);
 		map.put("BusNumInfo", busNumInfo);
-		map.put("infoSize",infoSize);
+		map.put("infoSize", infoSize);
 		model.addAttribute("map", map);
-		
+
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
 		String cmd = requestURI.substring(ctxPath.length());
@@ -119,7 +119,7 @@ public class LeftMenuController {
 	public ModelAndView searchBusInfo(HttpServletRequest request, Model model) throws Exception {
 		String bId = request.getParameter("buslineId");
 		String bSize = request.getParameter("infoSize");
-		
+
 		ModelAndView mav = new ModelAndView();
 		ApiBusInfo bInfo = new ApiBusInfo();
 		List<BusBean> busInfo = new ArrayList();
@@ -131,7 +131,7 @@ public class LeftMenuController {
 		busLine = bLine.getBusLine(bId);
 		mav.addObject("BusLine", busLine);
 		mav.addObject("BusInfo", busInfo);
-		mav.addObject("bSize",bSize);
+		mav.addObject("bSize", bSize);
 		mav.setViewName("include/bus_node_search_view");
 
 		String requestURI = request.getRequestURI();

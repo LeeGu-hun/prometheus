@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="busSQL">
+	<insert id="busInsert" parameterType="bean.CrowdedBean">
+		insert into bus_crowded
+			values(#{carNo},#{crowded})
+	</insert>
+	<update id="busUpdate" parameterType="bean.CrowdedBean">
+		update bus_Crowded set CROWDED = #{crowded}  where CARNO = #{carNo}
+	</update>
+	<select id="busBool" parameterType="String" resultType="String">
+		select CARNO from bus_crowded where CARNO = #{carNo}
+	</select>
+	<select id="busSelect" parameterType="String" resultType="int">
+		select crowded from bus_crowded where CARNO = #{carNo}
+	</select>
+	<select id="busList" parameterType="bean.CrowdedBean" resultType="bean.CrowdedBean">
+		select * from bus_crowded
+	</select>
+</mapper>
+
