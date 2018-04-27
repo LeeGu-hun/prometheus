@@ -72,6 +72,23 @@
 </script>
 </head>
 <style>
+	#logo {
+	margin : 0;
+	line-height: 50px;
+	vertical-align: middle;
+	}
+	
+	#logo p {
+		
+		font-size : 32px;
+		text-shadow: 2px 2px 2px black;
+	}
+	#logo img {
+		float: left;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	body{margin: 0; padding: 0;}
 
 	#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
@@ -189,7 +206,6 @@
 	  margin:5px 20px 0px 8px;
 	  background-position: center center;
 	  }
-	  
 	#win2{
 	  position:absolute;
 	  display: inline-block;
@@ -312,7 +328,10 @@
 </style>
 <body>
 	<div id="main">
-		<h1>Team Prometheus</h1>
+		<div id="logo">
+			<img alt="로고" src="${pageContext.request.contextPath}/images/p.png">
+			<p>Team Prometheus<p>
+		</div>
 		<div id="left">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>
