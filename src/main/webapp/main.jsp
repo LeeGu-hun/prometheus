@@ -72,13 +72,23 @@
 </script>
 </head>
 <style>
+
 	#logo {
 	margin : 0;
 	line-height: 50px;
 	vertical-align: middle;
 	}
 	
-	#logo p {
+	#logoLeft{
+	width: 50%;
+	float: left;
+	}
+	#logoRight{
+	width: 50%;
+	float: right;
+	}
+	
+	#logo span {
 		
 		font-size : 32px;
 		text-shadow: 2px 2px 2px black;
@@ -89,10 +99,13 @@
 		margin-left: auto;
 		margin-right: auto;
 	}
+	#btnTestPage{
+		float: right;
+	}
 	body{margin: 0; padding: 0;}
 
 	#left,#right{border-top: 3px solid black; border-bottom: 3px solid black;}
-	#left{background-color:white; float: left; width: 20%; height: 750px; text-align: left;}
+	#left{background-color:white; float: left; width: 20%; height: 750px; text-align: left; clear: both;}
 	#right{float: left; width: 79.7%; height: 750px; border-left: 2px solid black; }
 	#map{width: 100%; height: 750px; }
 	#road{
@@ -329,9 +342,13 @@
 <body>
 	<div id="main">
 		<div id="logo">
-			<img alt="로고" src="${pageContext.request.contextPath}/images/p.png">
-			<p>Team Prometheus<p>
+			<div id="logoLeft">
+				<img alt="로고" src="${pageContext.request.contextPath}/images/p.png">
+				<span>Team Prometheus<span>
+			</div>
+			<div id="logoRight" align="right"><button type="submit" onclick="location.href = './jsontest' ">테스트 페이지 이동</button></div>
 		</div>
+		
 		<div id="left">
 			<div id="menu">
 				<%@include file="/include/menu.jsp"%>
