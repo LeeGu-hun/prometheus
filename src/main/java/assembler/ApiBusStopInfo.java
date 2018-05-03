@@ -21,7 +21,7 @@ import bean.BusStopInfoBean;
 
 public class ApiBusStopInfo {
 
-	public List<BusStopInfoBean> busStopInfo(String station) throws Exception {
+	public List<BusStopInfoBean> busStopInfo(String station, int crowd) throws Exception {
 		ArrayList<BusStopInfoBean> result = new ArrayList();
 
 		String URLSTRING = URLEncoder.encode(station, "UTF-8");
@@ -60,107 +60,246 @@ public class ApiBusStopInfo {
 
 		for (int i = 0; i < itemsize; i++) {
 			if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 17) {
-				// 혼잡도 random
-				int crowded1 = (int)(Math.random() * 45);
-				int crowded2 = (int)(Math.random() * 45);
-				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue(),
-						crowded1,crowded2
-						));
+				int crowded1 = (int) (Math.random() * 45);
+				int crowded2 = (int) (Math.random() * 45);
+				if (((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+						.getChildNodes().item(0).getNodeValue().equals("2632")) {
+					result.add(new BusStopInfoBean(
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							crowd, crowded2));
+
+				} else if (((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0)
+						.getChildNodes().item(0).getNodeValue().equals("2632")) {
+					result.add(new BusStopInfoBean(
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							crowded1, crowd));
+				} else {
+					result.add(new BusStopInfoBean(
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+									.getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2")
+									.item(0).getChildNodes().item(0).getNodeValue(),
+							crowded1, crowded2));
+				}
 			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 16) {
-				int crowded1 = (int)(Math.random() * 45);
-				int crowded2 = (int)(Math.random() * 45);
+				int crowded1 = (int) (Math.random() * 45);
+				int crowded2 = (int) (Math.random() * 45);
 				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0).getChildNodes().item(0).getNodeValue(),
-						crowded1,crowded2
-						));
-			}  else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 13) {
-				int crowded1 = (int)(Math.random() * 45);
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo2").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate2").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min2").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station2").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						crowded1, crowded2));
+			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 13) {
+				int crowded1 = (int) (Math.random() * 45);
 				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						crowded1
-						));
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						crowded1));
 			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 12) {
-				int crowded1 = (int)(Math.random() * 45);
+				int crowded1 = (int) (Math.random() * 45);
 				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0).getChildNodes().item(0).getNodeValue(),
-						crowded1
-						));
-			}
-			
-			
-			else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 9) {
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lowplate1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("min1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("station1").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						crowded1));
+			} else if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 9) {
 				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue()
-						));
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopId").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bstopIdx").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("bustype").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineNo").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("lineid").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+								.getChildNodes().item(0).getNodeValue()));
 			} else {
 				result.add(new BusStopInfoBean(
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0).getChildNodes().item(0).getNodeValue(),
-						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0).getChildNodes().item(0).getNodeValue()
-						));
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsX").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("gpsY").item(0)
+								.getChildNodes().item(0).getNodeValue(),
+						((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("nodeNm").item(0)
+								.getChildNodes().item(0).getNodeValue()));
 			}
 		}
 		return result;

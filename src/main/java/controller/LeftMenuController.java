@@ -7,8 +7,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.taglibs.standard.tag.common.xml.ForEachTag;
-import org.springframework.aop.target.SimpleBeanTargetSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +21,16 @@ import assembler.ApiBusNum;
 import assembler.ApiBusStopInfo;
 import bean.BusBean;
 import bean.BusInfoBean;
-import bean.BusStopBean;
 import bean.BusStopInfoBean;
+import service.BusService;
 
 @Controller
 public class LeftMenuController {
+	private BusService busService;
+	
+	public void setBusService(BusService busService) {
+		this.busService = busService;
+	}
 
 	@RequestMapping(value = "/busNumSearch", method = RequestMethod.GET)
 	public String busNumSearch(HttpServletRequest request) {
@@ -68,14 +71,6 @@ public class LeftMenuController {
 		if (endPage >= totalPage)
 			endPage = totalPage;
 
-		/*
-		 * System.out.println("현재 페이지 =" + page); System.out.println("현재 페이지 =" +
-		 * currentPage); System.out.println("한 화면에 표시할 페이지 수 =" + sizeOfPage);
-		 * System.out.println("한페이지에 표시할 정류소 수 =" + maxbStopCount);
-		 * System.out.println("총 정류소 수 =" + total); System.out.println("총 페이지 수 =" +
-		 * totalPage); System.out.println("한화면에 시작할 첫페이지 넘버 =" + startPage);
-		 * System.out.println("한화면에 마지막 페이지 넘버 =" + endPage);
-		 */
 
 		map.put("station", station); // 검색어
 		map.put("totalPage", totalPage); // page 수
@@ -127,8 +122,12 @@ public class LeftMenuController {
 
 		ApiBusLine bLine = new ApiBusLine();
 		List<BusInfoBean> busLine = new ArrayList();
-
-		busLine = bLine.getBusLine(bId);
+		
+		String carNo = "2632";
+		int crowd = busService.busGetCrowded(carNo);
+		
+		
+		busLine = bLine.getBusLine(bId, crowd);
 		mav.addObject("BusLine", busLine);
 		mav.addObject("BusInfo", busInfo);
 		mav.addObject("bSize", bSize);
@@ -147,7 +146,10 @@ public class LeftMenuController {
 	public ModelAndView searchBusNodeGps(HttpServletRequest request) throws Exception {
 		String bNodeId = request.getParameter("busNodeId");
 		ApiBusStopInfo stopNodeInfo = new ApiBusStopInfo();
-		List<BusStopInfoBean> busStopInfo = stopNodeInfo.busStopInfo(bNodeId);
+		String carNo = "2632";
+		int crowd = busService.busGetCrowded(carNo);
+		
+		List<BusStopInfoBean> busStopInfo = stopNodeInfo.busStopInfo(bNodeId, crowd);
 		String gpsX = busStopInfo.get(0).getGpsX();
 		String gpsY = busStopInfo.get(0).getGpsY();
 		String name = busStopInfo.get(0).getNodeNm();
@@ -207,11 +209,11 @@ public class LeftMenuController {
 				conOverLay.append("<div class=\"busImgs\" align= left>");
 				conOverLay.append("<div class=\"busimg\" align= center>");
 				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
-				if (busStopInfo.get(i).getCrowded1() <= 20) {
+				if (busStopInfo.get(i).getCrowded1() < 20) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-				} else if (busStopInfo.get(i).getCrowded1() < 35) {
+				} else if (busStopInfo.get(i).getCrowded1() < 30) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
 							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
@@ -223,11 +225,11 @@ public class LeftMenuController {
 				conOverLay.append("</div>");// firstBus
 				conOverLay.append("<div class=\"busimg\" align= center>");
 				conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo2() + "]</p>");
-				if (busStopInfo.get(i).getCrowded2() <= 20) {
+				if (busStopInfo.get(i).getCrowded2() < 20) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 							+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 							+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-				} else if (busStopInfo.get(i).getCrowded2() < 35) {
+				} else if (busStopInfo.get(i).getCrowded2() < 30) {
 					conOverLay.append("<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 							+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
 							+ "EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png\">");
@@ -260,7 +262,10 @@ public class LeftMenuController {
 		ModelAndView mav = new ModelAndView();
 		ApiBusStopInfo bstopInfo = new ApiBusStopInfo();
 		List<BusStopInfoBean> busStopInfo = new ArrayList();
-		busStopInfo = bstopInfo.busStopInfo(bstopId);
+		String carNo = "2632";
+		int crowd = busService.busGetCrowded(carNo);
+		
+		busStopInfo = bstopInfo.busStopInfo(bstopId, crowd);
 
 		// map에 버스 정보
 		StringBuffer conOverLay = new StringBuffer();
@@ -300,12 +305,12 @@ public class LeftMenuController {
 					conOverLay.append("<div class=\"busImgs\" align= left>");
 					conOverLay.append("<div class=\"busimg\" align= center>");
 					conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
-					if (busStopInfo.get(i).getCrowded1() <= 20) {
+					if (busStopInfo.get(i).getCrowded1() < 20) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 										+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 										+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-					} else if (busStopInfo.get(i).getCrowded1() < 35) {
+					} else if (busStopInfo.get(i).getCrowded1() < 30) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 										+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
@@ -330,12 +335,12 @@ public class LeftMenuController {
 					conOverLay.append("<div class=\"busImgs\" align= left>");
 					conOverLay.append("<div class=\"busimg\" align= center>");
 					conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo1() + "]</p>");
-					if (busStopInfo.get(i).getCrowded1() <= 20) {
+					if (busStopInfo.get(i).getCrowded1() < 20) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 										+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 										+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-					} else if (busStopInfo.get(i).getCrowded1() < 35) {
+					} else if (busStopInfo.get(i).getCrowded1() < 30) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 										+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"
@@ -349,12 +354,12 @@ public class LeftMenuController {
 					conOverLay.append("</div>");// firstBus
 					conOverLay.append("<div class=\"busimg\" align= center>");
 					conOverLay.append("<p class=\"busNum\">[" + busStopInfo.get(i).getCarNo2() + "]</p>");
-					if (busStopInfo.get(i).getCrowded2() <= 20) {
+					if (busStopInfo.get(i).getCrowded2() < 20) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/"
 										+ "MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_"
 										+ "5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png\">");
-					} else if (busStopInfo.get(i).getCrowded2() < 35) {
+					} else if (busStopInfo.get(i).getCrowded2() < 30) {
 						conOverLay.append(
 								"<img class=\"crowdedImg\" src=\"https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/"
 										+ "MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_"

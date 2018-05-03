@@ -8,7 +8,9 @@
 		http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<bean class="controller.MainController" />
-	<bean class="controller.LeftMenuController" />
+	<bean class="controller.LeftMenuController" >
+		<property name="busService" ref="busService"/>
+	</bean>
 	<bean class="controller.BusNumController" >
 		<property name="busService" ref="busService"/>
 	</bean>

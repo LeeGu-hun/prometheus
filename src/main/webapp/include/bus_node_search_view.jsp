@@ -56,12 +56,12 @@
 					<c:choose>
 						<c:when test="${bl.carNo != null}">
 							<c:choose>
-								<c:when test="${bl.crowded <= 20}">
+								<c:when test="${bl.crowded < 20}">
 									<td><img class="crowdImg"
 										src="https://blogfiles.pstatic.net/MjAxODA0MTZfOTcg/MDAxNTIzODY5MjU3Mjg1.LKPuNYZRGO4sGNcHasT0kBTOHDBVPAm3-TGhtGGOe9sg.WdrsC5klAh6zW_5qnZ2EGaBaHXloaSiiVMnpY0I4h2Eg.PNG.aaz77/1.png">
 									</td>
 								</c:when>
-								<c:when test="${bl.crowded < 35}">
+								<c:when test="${bl.crowded < 30}">
 									<td><img class="crowdImg"
 										src="https://blogfiles.pstatic.net/MjAxODA0MTZfNDEg/MDAxNTIzODY5MjU3Mzg2.mlUYpom6PEMkhg1fphN-JYTgqi_4qGrSukGMfZY-aiQg.r0VJHRaRGldVrF_EZQYIJtRjtw-5emMK-ZhZRNjofGcg.PNG.aaz77/2.png">
 									</td>

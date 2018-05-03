@@ -18,8 +18,8 @@ import org.w3c.dom.Element;
 import bean.BusInfoBean;
 
 public class ApiBusLine {
-	public List getBusLine(String bLine) throws Exception {
-
+	public List getBusLine(String bLine , int crowd) throws Exception {
+		
 		List TEST = new ArrayList();
 		String URLSTRING = URLEncoder.encode(bLine, "UTF-8");
 
@@ -58,9 +58,8 @@ public class ApiBusLine {
 
 		for (int i = 0; i < itemsize; i++) {
 			if (doc.getElementsByTagName("item").item(i).getChildNodes().getLength() == 14) {
-				// 불필요한 if문이 지만 일단 넘김 
 				if (((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("carNo").item(0)
-						.getChildNodes().item(0).getNodeValue().equals("71자2813")) {
+						.getChildNodes().item(0).getNodeValue().equals("70자2632")) {
 					int crowded = (int) (Math.random() * 45);
 					TEST.add(new BusInfoBean(
 							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("arsNo").item(0)
@@ -91,7 +90,7 @@ public class ApiBusLine {
 									.getChildNodes().item(0).getNodeValue(),
 							((Element) doc.getElementsByTagName("item").item(i)).getElementsByTagName("rpoint").item(0)
 									.getChildNodes().item(0).getNodeValue(),
-							crowded));
+									crowd));
 				} else {
 					int crowded = (int) (Math.random() * 45);
 					TEST.add(new BusInfoBean(

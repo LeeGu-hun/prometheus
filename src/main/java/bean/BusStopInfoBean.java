@@ -24,6 +24,7 @@ public class BusStopInfoBean {
 
 	public BusStopInfoBean() {
 	}
+
 	public BusStopInfoBean(String arsNo, String bstopId, String bstopIdx, String bustype, String carNo1, String carNo2,
 			String gpsX, String gpsY, String lineNo, String lineid, String lowplate1, String lowplate2, String min1,
 			String min2, String nodeNm, String station1, String station2, int crowded1, int crowded2) {

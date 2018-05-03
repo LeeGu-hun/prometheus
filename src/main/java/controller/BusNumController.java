@@ -1,17 +1,17 @@
 package controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.support.BindStatus;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import bean.BusInfoBean;
 import bean.CrowdedBean;
 import service.BusService;
 
@@ -27,11 +27,9 @@ public class BusNumController {
 	public String busCrowded(HttpServletRequest request, Model model) {
 		int oneValue = 0;
 		String carNo = "";
-		System.out.println("들어오는값  carNo : "+ request.getParameter("carno"));
-		System.out.println("들어오는값  crowded : "+ request.getParameter("onevalue"));
-		
 		if (request.getParameter("carno") != null) {
 			carNo = request.getParameter("carno");
+			//확인 작업 
 			if (busService.busCarNo(carNo)) {
 				System.out.println("있다");
 			} else {
@@ -44,40 +42,33 @@ public class BusNumController {
 				}
 			}
 			oneValue = busService.busGetCrowded(carNo);
-			System.out.println("더하기전 값 oneValue: "+ oneValue);
-		}else {
+			System.out.println("더하기전 값 oneValue: " + oneValue);
+		} else {
 			System.out.println("carno 가 널이다");
 		}
-		if(request.getParameter("onevalue") !=null) {
+		if (request.getParameter("onevalue") != null) {
 			oneValue += Integer.parseInt(request.getParameter("onevalue"));
-			System.out.println("더하고 나서  oneValue: "+ oneValue);
-		}else {
+			System.out.println("더하고 나서  oneValue: " + oneValue);
+		} else {
 			System.out.println("onevlaue 가 널이다");
 		}
 
 		CrowdedBean bean = new CrowdedBean(carNo, oneValue);
-		
-		//버스 인원 추가 
+
+		// 버스 인원 추가
 		try {
 			busService.busCrowdedUpdate(bean);
 		} catch (Exception e1) {
 			System.out.println("update에 문제가 있다");
 			e1.printStackTrace();
-		}  
-		
+		}
+
 		List<CrowdedBean> list = null;
 		try {
 			list = busService.busGetAll(bean);
 		} catch (Exception e) {
-			System.out.println("getall이 실패했다");
 			e.printStackTrace();
 		}
-			System.out.println(list.size());
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println((i+1)+"번째 carNo "+list.get(i).getCarNo());
-			System.out.println((i+1)+"번째 crowded "+list.get(i).getCrowded());
-		}
-		
 		model.addAttribute("busCrowded", list);
 		String requestURI = request.getRequestURI();
 		String ctxPath = request.getContextPath();
@@ -85,6 +76,22 @@ public class BusNumController {
 		System.out.println(cmd);
 		request.setAttribute("cmd", cmd);
 		return "./include/jsontest";
+	}
+
+	/* 안드로이드 통신관련 */
+	@RequestMapping(value = "/andtest", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Integer> androidTestWithRequestAndResponse(HttpServletRequest request) {
+		System.out.println("안드로이드에서 요청이 들어왔다  carNo : " + request.getParameter("carno"));
+
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		int oneValue = 0;
+		String carNo = request.getParameter("carno");
+		oneValue = busService.busGetCrowded(carNo);
+
+		result.put("crowded", oneValue);
+		System.out.println("DB는 문제없이 돌아간다");
+		return result;
 	}
 
 }
